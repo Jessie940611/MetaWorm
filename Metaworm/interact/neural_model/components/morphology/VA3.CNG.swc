@@ -1,0 +1,26 @@
+# Original file VA3.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in VA3.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\VA3.swc
+#
+#
+1 1 0.0 0.0 0.0 2.01 -1
+2 1 0.91 -1.78 0.0 2.01 1
+3 1 -0.91 1.78 0.0 2.01 1
+4 2 -0.14 -1.42 0.02 0.502 1
+5 2 -0.69 -6.92 0.02 0.354 4
+6 2 -4.12 -31.31 -0.01 0.32 5
+7 2 -4.76 -37.08 0.03 0.218 6
+8 2 -9.45 -71.38 0.05 0.218 7
+9 2 -9.87 -76.71 0.05 0.212 8
+10 2 -7.68 -101.2 -0.43 0.212 9
+11 2 -1.92 -147.61 -0.4 0.218 10
+12 2 -1.73 -148.97 -0.4 0.255 11
+13 3 0.14 1.42 -0.02 0.439 1
+14 3 0.61 5.65 0.02 0.354 13
+15 3 2.52 19.71 -0.03 0.283 14
+16 3 2.49 25.14 0.01 0.218 15
+17 3 2.39 55.86 0.0 0.218 16
+18 3 0.29 68.66 0.0 0.25 17
+19 3 -0.18 71.67 0.0 0.212 18

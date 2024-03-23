@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../libowl-common.a  CMakeFiles/owl-common.dir/owl-common.cpp.o
+/usr/bin/ranlib ../../libowl-common.a

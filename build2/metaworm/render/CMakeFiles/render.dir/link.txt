@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../librender.a  CMakeFiles/render.dir/Camera.cpp.o CMakeFiles/render.dir/DrawFunctions.cpp.o CMakeFiles/render.dir/DrawPrimitives.cpp.o CMakeFiles/render.dir/GLWindow.cpp.o CMakeFiles/render.dir/SimulationWindow.cpp.o CMakeFiles/render.dir/lodepng.cpp.o CMakeFiles/render.dir/main.cpp.o
+/usr/bin/ranlib ../../librender.a

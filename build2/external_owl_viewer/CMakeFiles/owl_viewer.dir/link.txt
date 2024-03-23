@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../libowl_viewer.a  CMakeFiles/owl_viewer.dir/OWLViewer.cpp.o CMakeFiles/owl_viewer.dir/Camera.cpp.o CMakeFiles/owl_viewer.dir/InspectMode.cpp.o CMakeFiles/owl_viewer.dir/FlyMode.cpp.o
+/usr/bin/ranlib ../libowl_viewer.a

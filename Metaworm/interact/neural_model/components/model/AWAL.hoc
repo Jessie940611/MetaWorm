@@ -1,0 +1,165 @@
+begintemplate AWAL
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 3.9, -265.875, 42.75, 2.8653097 ) }
+    Soma { pt3dadd( 3.9, -263.0096903, 42.75, 2.8653097 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( 3.9, -265.875, 42.75, 0.5830952 ) }
+    Axon { pt3dadd( 3.9, -265.15, 42.75, 0.5830952 ) }
+    Axon { pt3dadd( 3.9, -264.95, 42.4, 0.53851646 ) }
+    Axon { pt3dadd( 3.7, -264.7, 39.7, 0.56568545 ) }
+    Axon { pt3dadd( 3.7, -265.4, 30.75, 0.5744563 ) }
+    Axon { pt3dadd( 3.55, -265.6, 29.8, 0.53851646 ) }
+    Axon { pt3dadd( -1.0, -267.6, 26.5, 0.6 ) }
+    Axon { pt3dadd( -1.8, -268.95, 27.5, 0.53851646 ) }
+    Axon { pt3dadd( -1.8, -271.25, 30.5, 0.53851646 ) }
+    Axon { pt3dadd( -1.75, -272.825, 35.975, 0.5612486 ) }
+    Axon { pt3dadd( -1.0, -273.05, 37.6, 0.41231057 ) }
+    Axon { pt3dadd( 0.65, -273.15, 38.125, 0.35000002 ) }
+    Axon { pt3dadd( 2.9, -273.425, 39.825, 0.43011624 ) }
+    Axon { pt3dadd( 4.475, -273.775, 42.45, 0.44158804 ) }
+    Axon { pt3dadd( 4.975, -274.2, 45.5, 0.42720017 ) }
+    Axon { pt3dadd( 4.45, -274.65, 48.525, 0.4924429 ) }
+    Axon { pt3dadd( 2.9, -275.0, 51.1, 0.48989794 ) }
+    Axon { pt3dadd( 0.6, -275.3, 52.825, 0.5123476 ) }
+    Axon { pt3dadd( -2.1, -275.35, 53.4, 0.5 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 21/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( 3.9, -265.875, 42.75, 0.53851646 ) }
+    Dendrite2 { pt3dadd( 3.9, -266.6, 42.75, 0.53851646 ) }
+    Dendrite2 { pt3dadd( 3.9, -266.95, 42.35, 0.50990194 ) }
+    Dendrite2 { pt3dadd( 4.2, -269.4, 42.9, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 5.4, -274.1, 45.1, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 6.2, -280.7, 47.9, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 7.4, -289.8, 51.1, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 7.900001, -293.2, 52.1, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 7.900001, -296.6, 52.8, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 7.5, -299.8, 53.3, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 6.2, -304.6, 54.1, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 5.0, -320.15, 56.0, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 3.1, -331.95, 57.2, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 2.3, -337.15, 57.8, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 1.3, -342.8, 58.6, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 0.7, -348.6, 58.9, 0.56568545 ) }
+    Dendrite2 { pt3dadd( 0.7, -349.45, 59.0, 0.5744563 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 19
+	Dendrite2 nseg = 17
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate AWAL
+
+

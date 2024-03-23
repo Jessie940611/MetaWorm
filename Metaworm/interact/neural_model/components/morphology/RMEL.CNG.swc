@@ -1,0 +1,26 @@
+# Original file RMEL.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in RMEL.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\RMEL.swc
+#
+#
+1 1 0.0 0.0 0.0 1.515 -1
+2 1 -0.02 -0.21 -1.49 1.515 1
+3 1 0.02 0.21 1.49 1.515 1
+4 2 0.32 0.98 0.0 0.354 1
+5 2 0.43 4.51 -0.01 0.189 4
+6 2 -0.8 7.39 -0.04 0.237 5
+7 2 -2.81 9.39 -0.01 0.236 6
+8 2 -5.45 10.39 0.0 0.195 7
+9 2 -8.26 10.09 -0.01 0.175 8
+10 2 -10.74 8.68 -0.03 0.228 9
+11 2 -12.64 6.26 0.0 0.208 10
+12 2 -13.54 3.27 0.0 0.224 11
+13 2 -13.38 0.16 -0.01 0.246 12
+14 2 -12.18 -2.6 0.0 0.245 13
+15 2 -10.18 -4.63 -0.04 0.241 14
+16 2 -7.52 -5.56 -0.01 0.25 15
+17 2 -4.77 -5.33 -0.05 0.189 16
+18 2 -2.26 -3.84 0.0 0.251 17
+19 2 -0.33 -0.98 0.0 0.212 18

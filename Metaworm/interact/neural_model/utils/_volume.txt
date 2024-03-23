@@ -1,0 +1,109 @@
+ AWAL (soma/neurite/sum volume):   18.4758   33.6649   52.1407
+ AWAR (soma/neurite/sum volume):   17.5056   33.1981   50.7036
+ AWCL (soma/neurite/sum volume):   16.6507   30.7804   47.4312
+ AWCR (soma/neurite/sum volume):   17.9384   30.8800   48.8184
+ AIYL (soma/neurite/sum volume):   15.2369    7.3808   22.6177
+ AIYR (soma/neurite/sum volume):   16.4879    7.0979   23.5858
+ AIAL (soma/neurite/sum volume):   12.3012    5.9355   18.2368
+ AIAR (soma/neurite/sum volume):   12.3012    5.6996   18.0008
+ AIZL (soma/neurite/sum volume):   12.6568    8.0956   20.7524
+ AIZR (soma/neurite/sum volume):   11.6296    8.3963   20.0259
+ RIBL (soma/neurite/sum volume):    4.0200    8.6944   12.7144
+ RIBR (soma/neurite/sum volume):    4.0200    8.9988   13.0189
+ AIBL (soma/neurite/sum volume):   12.9555   13.4363   26.3917
+ AIBR (soma/neurite/sum volume):   12.9555   13.0080   25.9635
+SAADL (soma/neurite/sum volume):    5.5898   19.9493   25.5391
+SAADR (soma/neurite/sum volume):    9.3132   18.5450   27.8582
+SAAVL (soma/neurite/sum volume):    5.4768   13.7579   19.2347
+SAAVR (soma/neurite/sum volume):    4.7942   14.6876   19.4817
+ RIML (soma/neurite/sum volume):   12.9555   11.1765   24.1320
+ RIMR (soma/neurite/sum volume):   14.0807   10.9653   25.0460
+ AVEL (soma/neurite/sum volume):    3.2737   59.8747   63.1484
+ AVER (soma/neurite/sum volume):    2.8114   60.4195   63.2309
+ AVBL (soma/neurite/sum volume):   17.7716  135.7967  153.5682
+ AVBR (soma/neurite/sum volume):   17.7716  135.8046  153.5761
+ AVAL (soma/neurite/sum volume):    4.3909  129.2780  133.6689
+ AVAR (soma/neurite/sum volume):    4.9674  128.3877  133.3551
+ PVCL (soma/neurite/sum volume):   10.9140  123.4184  134.3324
+ PVCR (soma/neurite/sum volume):   10.9140  123.9576  134.8716
+ RMEL (soma/neurite/sum volume):   21.8451    7.8238   29.6688
+ RMER (soma/neurite/sum volume):   20.5728    7.5613   28.1340
+ RMED (soma/neurite/sum volume):   28.8499   43.1554   72.0053
+ RMEV (soma/neurite/sum volume):   14.2042  128.5069  142.7111
+RMDDL (soma/neurite/sum volume):   16.5611    5.6408   22.2020
+RMDDR (soma/neurite/sum volume):   18.0472    5.5002   23.5475
+ RMDL (soma/neurite/sum volume):    9.5288    5.4790   15.0078
+ RMDR (soma/neurite/sum volume):    9.5288    5.7313   15.2601
+RMDVL (soma/neurite/sum volume):    9.9928    5.7634   15.7562
+RMDVR (soma/neurite/sum volume):    9.9928    5.9672   15.9600
+ RIVL (soma/neurite/sum volume):   17.6717   11.9928   29.6645
+ RIVR (soma/neurite/sum volume):   16.3905   12.2623   28.6528
+SMDDL (soma/neurite/sum volume):   10.9140  119.8278  130.7418
+SMDDR (soma/neurite/sum volume):   10.9140  115.9233  126.8373
+SMDVL (soma/neurite/sum volume):    9.5831   62.5323   72.1154
+SMDVR (soma/neurite/sum volume):    9.5831   64.4676   74.0507
+SMBDL (soma/neurite/sum volume):   17.7714  121.1657  138.9371
+SMBDR (soma/neurite/sum volume):   17.7714  129.0663  146.8377
+SMBVL (soma/neurite/sum volume):   16.2045   65.7864   81.9909
+SMBVR (soma/neurite/sum volume):   16.9124   64.1547   81.0671
+ DA01 (soma/neurite/sum volume):   46.2677   46.0304   92.2980
+ DA02 (soma/neurite/sum volume):   48.8117   63.6181  112.4299
+ DA03 (soma/neurite/sum volume):   52.6878  103.1719  155.8597
+ DA04 (soma/neurite/sum volume):   27.9919  126.1684  154.1603
+ DA05 (soma/neurite/sum volume):   43.5449  158.8638  202.4087
+ DA06 (soma/neurite/sum volume):   43.5447  169.5819  213.1266
+ DA07 (soma/neurite/sum volume):   43.9047  161.2438  205.1484
+ DA08 (soma/neurite/sum volume):   43.3205   52.2202   95.5407
+ DA09 (soma/neurite/sum volume):   43.3205   51.5808   94.9012
+ DB01 (soma/neurite/sum volume):   87.8221  214.0114  301.8335
+ DB02 (soma/neurite/sum volume):   30.4298  208.3418  238.7716
+ DB03 (soma/neurite/sum volume):   46.2677  191.4592  237.7269
+ DB04 (soma/neurite/sum volume):   49.1855  223.6524  272.8380
+ DB05 (soma/neurite/sum volume):   44.7180  183.6762  228.3942
+ DB06 (soma/neurite/sum volume):   50.4540  108.3651  158.8191
+ DB07 (soma/neurite/sum volume):   46.2679   74.5104  120.7783
+ DD01 (soma/neurite/sum volume):   58.2380   48.8062  107.0443
+ DD02 (soma/neurite/sum volume):   55.7324   65.9090  121.6413
+ DD03 (soma/neurite/sum volume):   45.3540   84.3341  129.6882
+ DD04 (soma/neurite/sum volume):   43.7246  125.7535  169.4782
+ DD05 (soma/neurite/sum volume):   47.8814   88.4363  136.3176
+ DD06 (soma/neurite/sum volume):   40.3508   81.0983  121.4491
+ VA01 (soma/neurite/sum volume):   28.3027   16.7880   45.0907
+ VA02 (soma/neurite/sum volume):   53.0714   25.9538   79.0252
+ VA03 (soma/neurite/sum volume):   51.0215   46.8392   97.8607
+ VA04 (soma/neurite/sum volume):   54.5173   56.0207  110.5379
+ VA05 (soma/neurite/sum volume):   46.2219   52.0849   98.3068
+ VA06 (soma/neurite/sum volume):   65.7662   54.5648  120.3310
+ VA07 (soma/neurite/sum volume):   44.8541   48.2842   93.1382
+ VA08 (soma/neurite/sum volume):   57.0543   50.9704  108.0247
+ VA09 (soma/neurite/sum volume):   56.5635   52.8437  109.4072
+ VA10 (soma/neurite/sum volume):   49.5134   41.4460   90.9594
+ VA11 (soma/neurite/sum volume):   54.1788   22.1287   76.3076
+ VA12 (soma/neurite/sum volume):   57.4971   26.3108   83.8079
+ VB01 (soma/neurite/sum volume):   20.7129   57.0469   77.7598
+ VB02 (soma/neurite/sum volume):   24.4278   59.0062   83.4339
+ VB03 (soma/neurite/sum volume):   34.7101   60.8164   95.5265
+ VB04 (soma/neurite/sum volume):   59.0317   65.8550  124.8867
+ VB05 (soma/neurite/sum volume):   42.9621   64.5297  107.4918
+ VB06 (soma/neurite/sum volume):   45.3540   60.9373  106.2913
+ VB07 (soma/neurite/sum volume):   54.1425   62.1282  116.2707
+ VB08 (soma/neurite/sum volume):   49.5134   59.3591  108.8725
+ VB09 (soma/neurite/sum volume):   51.4482   52.2564  103.7046
+ VB10 (soma/neurite/sum volume):   45.9474   41.6338   87.5812
+ VB11 (soma/neurite/sum volume):   51.8761   31.5993   83.4754
+ VD01 (soma/neurite/sum volume):   37.3669   37.0911   74.4580
+ VD02 (soma/neurite/sum volume):   27.0666   28.0665   55.1331
+ VD03 (soma/neurite/sum volume):   29.9527   42.6576   72.6103
+ VD04 (soma/neurite/sum volume):   39.0441   49.0204   88.0645
+ VD05 (soma/neurite/sum volume):   34.7101   51.2196   85.9297
+ VD06 (soma/neurite/sum volume):   30.2704   55.1479   85.4184
+ VD07 (soma/neurite/sum volume):   29.0452   64.7123   93.7575
+ VD08 (soma/neurite/sum volume):   34.7099   65.8936  100.6035
+ VD09 (soma/neurite/sum volume):   36.3047   53.8750   90.1797
+ VD10 (soma/neurite/sum volume):   42.9621   46.6994   89.6615
+ VD11 (soma/neurite/sum volume):   39.2176   42.8663   82.0839
+ VD12 (soma/neurite/sum volume):   27.1816   41.3064   68.4879
+ VD13 (soma/neurite/sum volume):   26.7605   22.5455   49.3060
+
+
+

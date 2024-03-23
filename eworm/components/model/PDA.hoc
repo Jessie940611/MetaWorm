@@ -1,0 +1,142 @@
+begintemplate PDA
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -2.95, 387.25, -5.5, 2.8460498 ) }
+    Soma { pt3dadd( -2.95, 390.0960498, -5.5, 2.8460498 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -2.95, 387.25, -5.5, 0.53851646 ) }
+    Axon { pt3dadd( -2.8999999, 387.25, -5.5, 0.53851646 ) }
+    Axon { pt3dadd( -3.2, 387.5, -5.5, 0.34641016 ) }
+    Axon { pt3dadd( -4.2, 388.4, -5.5, 0.34641016 ) }
+    Axon { pt3dadd( -5.4249997, 389.925, -4.95, 0.30822068 ) }
+    Axon { pt3dadd( -6.7000003, 392.75, -3.5750003, 0.22912878 ) }
+    Axon { pt3dadd( -7.2, 396.075, -2.025, 0.35355338 ) }
+    Axon { pt3dadd( -6.8, 399.4, -0.45, 0.3 ) }
+    Axon { pt3dadd( -6.0, 402.19998, 0.95, 0.3 ) }
+    Axon { pt3dadd( -4.475, 404.09998, 1.8, 0.3774917 ) }
+    Axon { pt3dadd( -3.5, 405.2, 3.15, 0.3 ) }
+    Axon { pt3dadd( -3.8, 405.65, 6.6249995, 0.559017 ) }
+    Axon { pt3dadd( -5.75, 405.95, 9.075, 0.42720017 ) }
+    Axon { pt3dadd( -5.65, 405.3, 11.85, 0.50990194 ) }
+    Axon { pt3dadd( -2.7, 404.575, 14.35, 0.6422616 ) }
+    Axon { pt3dadd( -2.325, 403.87503, 14.35, 0.61237246 ) }
+    Axon { pt3dadd( -1.25, 398.25, 14.1, 0.6480741 ) }
+    Axon { pt3dadd( -0.70000005, 394.5, 13.7, 0.56568545 ) }
+    Axon { pt3dadd( -0.70000005, 388.85, 12.3, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 358.75, 8.8, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 354.45, 8.299999, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 326.2, 8.1, 0.56568545 ) }
+    Axon { pt3dadd( -0.70000005, 321.65, 8.1, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 293.55, 12.6, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 288.2, 13.400001, 0.56568545 ) }
+    Axon { pt3dadd( -0.70000005, 259.45, 21.699999, 0.5744563 ) }
+    Axon { pt3dadd( -0.70000005, 255.65, 22.75, 0.6480741 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 27
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate PDA
+
+

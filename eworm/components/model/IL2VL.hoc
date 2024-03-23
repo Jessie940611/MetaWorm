@@ -1,0 +1,150 @@
+begintemplate IL2VL
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 3.3, -288.875, 42.95, 2.823119 ) }
+    Soma { pt3dadd( 3.3, -286.051881, 42.95, 2.823119 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( 3.3, -288.875, 42.95, 0.6 ) }
+    Axon { pt3dadd( 3.3, -289.8, 43.3, 0.6 ) }
+    Axon { pt3dadd( 3.3, -290.15, 43.55, 0.50990194 ) }
+    Axon { pt3dadd( 4.1, -291.725, 45.2, 0.585235 ) }
+    Axon { pt3dadd( 5.05, -298.7, 47.05, 0.42426404 ) }
+    Axon { pt3dadd( 3.05, -304.9, 48.649998, 0.42426404 ) }
+    Axon { pt3dadd( 3.05, -309.3, 50.15, 0.42426404 ) }
+    Axon { pt3dadd( 2.35, -317.19998, 51.45, 0.42426404 ) }
+    Axon { pt3dadd( 0.55, -337.0, 54.85, 0.42426404 ) }
+    Axon { pt3dadd( -0.25, -342.6, 55.85, 0.42426404 ) }
+    Axon { pt3dadd( -0.25, -346.30002, 56.35, 0.42426404 ) }
+    Axon { pt3dadd( -0.25, -349.5, 56.85, 0.42426404 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 14/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( 3.3, -288.875, 42.95, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 3.3, -287.94998, 42.6, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 1.35, -284.05002, 41.45, 0.4358899 ) }
+    Dendrite2 { pt3dadd( 0.0, -278.25, 39.175, 0.4387482 ) }
+    Dendrite2 { pt3dadd( 0.0, -274.5, 38.125, 0.40311286 ) }
+    Dendrite2 { pt3dadd( 0.775, -273.30002, 38.125, 0.43011624 ) }
+    Dendrite2 { pt3dadd( 2.8999999, -273.42502, 39.825, 0.43011624 ) }
+    Dendrite2 { pt3dadd( 4.475, -273.775, 42.449997, 0.44158804 ) }
+    Dendrite2 { pt3dadd( 4.975, -274.05, 44.375, 0.41833004 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 12
+	Dendrite2 nseg = 9
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate IL2VL
+
+

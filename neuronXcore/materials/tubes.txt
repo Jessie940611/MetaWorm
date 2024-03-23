@@ -1,0 +1,13 @@
+# A rough metallic material
+# base_color 0.8 0.8 0.8
+base_color 0.23 0.15 0.11
+metallic 0.25
+specular 0.15
+roughness 0.30
+sheen 1
+sheen_tint 0.35
+clearcoat 0.0
+clearcoat_gloss 1.0
+ior 1.45
+specular_transmission 0.0
+

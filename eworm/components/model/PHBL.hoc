@@ -1,0 +1,149 @@
+begintemplate PHBL
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 1.2, 405.60004, 5.475, 2.304886 ) }
+    Soma { pt3dadd( 1.2, 407.904926, 5.475, 2.304886 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( 1.2, 405.60004, 5.475, 0.31622776 ) }
+    Axon { pt3dadd( 1.6, 405.24997, 5.25, 0.31622776 ) }
+    Axon { pt3dadd( 2.175, 405.00003, 4.75, 0.41533118 ) }
+    Axon { pt3dadd( 3.25, 404.09998, 2.85, 0.37416574 ) }
+    Axon { pt3dadd( 4.3, 399.4, -0.45, 0.3 ) }
+    Axon { pt3dadd( 4.7, 396.075, -2.025, 0.21213202 ) }
+    Axon { pt3dadd( 4.2, 392.75, -3.5750003, 0.3640055 ) }
+    Axon { pt3dadd( 2.925, 389.925, -4.95, 0.18708287 ) }
+    Axon { pt3dadd( 1.0, 388.05002, -5.825, 0.4387482 ) }
+    Axon { pt3dadd( -1.475, 384.45, -7.9000006, 0.5408327 ) }
+    Axon { pt3dadd( -1.4499999, 371.65, -14.45, 0.4358899 ) }
+    Axon { pt3dadd( -1.4499999, 355.35, -21.449999, 0.4358899 ) }
+    Axon { pt3dadd( -1.4499999, 350.75, -23.0, 0.50990194 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 15/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( 1.2, 405.60004, 5.475, 0.3 ) }
+    Dendrite2 { pt3dadd( 0.8, 405.95, 5.7, 0.3 ) }
+    Dendrite2 { pt3dadd( 0.8, 408.55, 7.5000005, 0.3 ) }
+    Dendrite2 { pt3dadd( 0.8, 411.8, 9.95, 0.41231057 ) }
+    Dendrite2 { pt3dadd( 0.775, 422.725, 17.325, 0.35707143 ) }
+    Dendrite2 { pt3dadd( 0.775, 423.1, 17.35, 0.33541018 ) }
+    Dendrite2 { pt3dadd( 0.825, 423.25, 17.2, 0.33541018 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 13
+	Dendrite2 nseg = 7
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate PHBL
+
+

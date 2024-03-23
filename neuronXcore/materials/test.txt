@@ -1,0 +1,12 @@
+# A kind of cloth like material
+# base_color 0.8 0.7 0.2
+base_color 0.655 0.560 0.396
+metallic 0
+specular 0.95
+roughness 0.6
+sheen 0
+sheen_tint 0.0
+clearcoat 0
+clearcoat_gloss 0
+ior 1.5
+specular_transmission 1.0

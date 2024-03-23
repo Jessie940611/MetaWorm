@@ -1,0 +1,403 @@
+self.minf_cca1 = np.zeros(n_time_step)
+self.hinf_cca1 = np.zeros(n_time_step)
+self.tm_cca1 = np.zeros(n_time_step)
+self.th_cca1 = np.zeros(n_time_step)
+self.m_cca1 = np.zeros(n_time_step)
+self.h_cca1 = np.zeros(n_time_step)
+self.minf_egl2 = np.zeros(n_time_step)
+self.tm_egl2 = np.zeros(n_time_step)
+self.m_egl2 = np.zeros(n_time_step)
+self.minf_egl19 = np.zeros(n_time_step)
+self.hinf_egl19 = np.zeros(n_time_step)
+self.tm_egl19 = np.zeros(n_time_step)
+self.th_egl19 = np.zeros(n_time_step)
+self.m_egl19 = np.zeros(n_time_step)
+self.h_egl19 = np.zeros(n_time_step)
+self.mfinf_egl36 = np.zeros(n_time_step)
+self.mminf_egl36 = np.zeros(n_time_step)
+self.msinf_egl36 = np.zeros(n_time_step)
+self.tmf_egl36 = np.zeros(n_time_step)
+self.tmm_egl36 = np.zeros(n_time_step)
+self.tms_egl36 = np.zeros(n_time_step)
+self.mf_egl36 = np.zeros(n_time_step)
+self.mm_egl36 = np.zeros(n_time_step)
+self.ms_egl36 = np.zeros(n_time_step)
+self.minf_irk = np.zeros(n_time_step)
+self.tm_irk = np.zeros(n_time_step)
+self.m_irk = np.zeros(n_time_step)
+self.minf_kqt3 = np.zeros(n_time_step)
+self.tmf_kqt3 = np.zeros(n_time_step)
+self.tms_kqt3 = np.zeros(n_time_step)
+self.winf_kqt3 = np.zeros(n_time_step)
+self.sinf_kqt3 = np.zeros(n_time_step)
+self.tw_kqt3 = np.zeros(n_time_step)
+self.ts_kqt3 = np.zeros(n_time_step)
+self.mf_kqt3 = np.zeros(n_time_step)
+self.ms_kqt3 = np.zeros(n_time_step)
+self.w_kqt3 = np.zeros(n_time_step)
+self.s_kqt3 = np.zeros(n_time_step)
+self.minf_kvs1 = np.zeros(n_time_step)
+self.hinf_kvs1 = np.zeros(n_time_step)
+self.tm_kvs1 = np.zeros(n_time_step)
+self.th_kvs1 = np.zeros(n_time_step)
+self.m_kvs1 = np.zeros(n_time_step)
+self.h_kvs1 = np.zeros(n_time_step)
+self.minf_shk1 = np.zeros(n_time_step)
+self.hinf_shk1 = np.zeros(n_time_step)
+self.tm_shk1 = np.zeros(n_time_step)
+self.th_shk1 = np.zeros(n_time_step)
+self.m_shk1 = np.zeros(n_time_step)
+self.h_shk1 = np.zeros(n_time_step)
+self.minf_shl1 = np.zeros(n_time_step)
+self.hfinf_shl1 = np.zeros(n_time_step)
+self.hsinf_shl1 = np.zeros(n_time_step)
+self.tm_shl1 = np.zeros(n_time_step)
+self.thf_shl1 = np.zeros(n_time_step)
+self.ths_shl1 = np.zeros(n_time_step)
+self.m_shl1 = np.zeros(n_time_step)
+self.hf_shl1 = np.zeros(n_time_step)
+self.hs_shl1 = np.zeros(n_time_step)
+self.minf_slo1_egl19 = np.zeros(n_time_step)
+self.tm_slo1_egl19 = np.zeros(n_time_step)
+self.mcavinf_slo1_egl19 = np.zeros(n_time_step)
+self.tmcav_slo1_egl19 = np.zeros(n_time_step)
+self.hcavinf_slo1_egl19 = np.zeros(n_time_step)
+self.thcav_slo1_egl19 = np.zeros(n_time_step)
+self.m_slo1_egl19 = np.zeros(n_time_step)
+self.hcav_slo1_egl19 = np.zeros(n_time_step)
+self.mcav_slo1_egl19 = np.zeros(n_time_step)
+self.minf_slo1_unc2 = np.zeros(n_time_step)
+self.tm_slo1_unc2 = np.zeros(n_time_step)
+self.mcavinf_slo1_unc2 = np.zeros(n_time_step)
+self.tmcav_slo1_unc2 = np.zeros(n_time_step)
+self.hcavinf_slo1_unc2 = np.zeros(n_time_step)
+self.thcav_slo1_unc2 = np.zeros(n_time_step)
+self.m_slo1_unc2 = np.zeros(n_time_step)
+self.hcav_slo1_unc2 = np.zeros(n_time_step)
+self.mcav_slo1_unc2 = np.zeros(n_time_step)
+self.minf_slo2_egl19 = np.zeros(n_time_step)
+self.tm_slo2_egl19 = np.zeros(n_time_step)
+self.mcavinf_slo2_egl19 = np.zeros(n_time_step)
+self.tmcav_slo2_egl19 = np.zeros(n_time_step)
+self.hcavinf_slo2_egl19 = np.zeros(n_time_step)
+self.thcav_slo2_egl19 = np.zeros(n_time_step)
+self.m_slo2_egl19 = np.zeros(n_time_step)
+self.hcav_slo2_egl19 = np.zeros(n_time_step)
+self.mcav_slo2_egl19 = np.zeros(n_time_step)
+self.minf_slo2_unc2 = np.zeros(n_time_step)
+self.tm_slo2_unc2 = np.zeros(n_time_step)
+self.mcavinf_slo2_unc2 = np.zeros(n_time_step)
+self.tmcav_slo2_unc2 = np.zeros(n_time_step)
+self.hcavinf_slo2_unc2 = np.zeros(n_time_step)
+self.thcav_slo2_unc2 = np.zeros(n_time_step)
+self.m_slo2_unc2 = np.zeros(n_time_step)
+self.hcav_slo2_unc2 = np.zeros(n_time_step)
+self.mcav_slo2_unc2 = np.zeros(n_time_step)
+self.minf_unc2 = np.zeros(n_time_step)
+self.hinf_unc2 = np.zeros(n_time_step)
+self.tm_unc2 = np.zeros(n_time_step)
+self.th_unc2 = np.zeros(n_time_step)
+self.m_unc2 = np.zeros(n_time_step)
+self.h_unc2 = np.zeros(n_time_step)
+
+
+
+*******************************************
+
+
+
+self.minf_cca1[cnt] = self.soma.minf_cca1
+self.hinf_cca1[cnt] = self.soma.hinf_cca1
+self.tm_cca1[cnt] = self.soma.tm_cca1
+self.th_cca1[cnt] = self.soma.th_cca1
+self.m_cca1[cnt] = self.soma.m_cca1
+self.h_cca1[cnt] = self.soma.h_cca1
+self.minf_egl2[cnt] = self.soma.minf_egl2
+self.tm_egl2[cnt] = self.soma.tm_egl2
+self.m_egl2[cnt] = self.soma.m_egl2
+self.minf_egl19[cnt] = self.soma.minf_egl19
+self.hinf_egl19[cnt] = self.soma.hinf_egl19
+self.tm_egl19[cnt] = self.soma.tm_egl19
+self.th_egl19[cnt] = self.soma.th_egl19
+self.m_egl19[cnt] = self.soma.m_egl19
+self.h_egl19[cnt] = self.soma.h_egl19
+self.mfinf_egl36[cnt] = self.soma.mfinf_egl36
+self.mminf_egl36[cnt] = self.soma.mminf_egl36
+self.msinf_egl36[cnt] = self.soma.msinf_egl36
+self.tmf_egl36[cnt] = self.soma.tmf_egl36
+self.tmm_egl36[cnt] = self.soma.tmm_egl36
+self.tms_egl36[cnt] = self.soma.tms_egl36
+self.mf_egl36[cnt] = self.soma.mf_egl36
+self.mm_egl36[cnt] = self.soma.mm_egl36
+self.ms_egl36[cnt] = self.soma.ms_egl36
+self.minf_irk[cnt] = self.soma.minf_irk
+self.tm_irk[cnt] = self.soma.tm_irk
+self.m_irk[cnt] = self.soma.m_irk
+self.minf_kqt3[cnt] = self.soma.minf_kqt3
+self.tmf_kqt3[cnt] = self.soma.tmf_kqt3
+self.tms_kqt3[cnt] = self.soma.tms_kqt3
+self.winf_kqt3[cnt] = self.soma.winf_kqt3
+self.sinf_kqt3[cnt] = self.soma.sinf_kqt3
+self.tw_kqt3[cnt] = self.soma.tw_kqt3
+self.ts_kqt3[cnt] = self.soma.ts_kqt3
+self.mf_kqt3[cnt] = self.soma.mf_kqt3
+self.ms_kqt3[cnt] = self.soma.ms_kqt3
+self.w_kqt3[cnt] = self.soma.w_kqt3
+self.s_kqt3[cnt] = self.soma.s_kqt3
+self.minf_kvs1[cnt] = self.soma.minf_kvs1
+self.hinf_kvs1[cnt] = self.soma.hinf_kvs1
+self.tm_kvs1[cnt] = self.soma.tm_kvs1
+self.th_kvs1[cnt] = self.soma.th_kvs1
+self.m_kvs1[cnt] = self.soma.m_kvs1
+self.h_kvs1[cnt] = self.soma.h_kvs1
+self.minf_shk1[cnt] = self.soma.minf_shk1
+self.hinf_shk1[cnt] = self.soma.hinf_shk1
+self.tm_shk1[cnt] = self.soma.tm_shk1
+self.th_shk1[cnt] = self.soma.th_shk1
+self.m_shk1[cnt] = self.soma.m_shk1
+self.h_shk1[cnt] = self.soma.h_shk1
+self.minf_shl1[cnt] = self.soma.minf_shl1
+self.hfinf_shl1[cnt] = self.soma.hfinf_shl1
+self.hsinf_shl1[cnt] = self.soma.hsinf_shl1
+self.tm_shl1[cnt] = self.soma.tm_shl1
+self.thf_shl1[cnt] = self.soma.thf_shl1
+self.ths_shl1[cnt] = self.soma.ths_shl1
+self.m_shl1[cnt] = self.soma.m_shl1
+self.hf_shl1[cnt] = self.soma.hf_shl1
+self.hs_shl1[cnt] = self.soma.hs_shl1
+self.minf_slo1_egl19[cnt] = self.soma.minf_slo1_egl19
+self.tm_slo1_egl19[cnt] = self.soma.tm_slo1_egl19
+self.mcavinf_slo1_egl19[cnt] = self.soma.mcavinf_slo1_egl19
+self.tmcav_slo1_egl19[cnt] = self.soma.tmcav_slo1_egl19
+self.hcavinf_slo1_egl19[cnt] = self.soma.hcavinf_slo1_egl19
+self.thcav_slo1_egl19[cnt] = self.soma.thcav_slo1_egl19
+self.m_slo1_egl19[cnt] = self.soma.m_slo1_egl19
+self.hcav_slo1_egl19[cnt] = self.soma.hcav_slo1_egl19
+self.mcav_slo1_egl19[cnt] = self.soma.mcav_slo1_egl19
+self.minf_slo1_unc2[cnt] = self.soma.minf_slo1_unc2
+self.tm_slo1_unc2[cnt] = self.soma.tm_slo1_unc2
+self.mcavinf_slo1_unc2[cnt] = self.soma.mcavinf_slo1_unc2
+self.tmcav_slo1_unc2[cnt] = self.soma.tmcav_slo1_unc2
+self.hcavinf_slo1_unc2[cnt] = self.soma.hcavinf_slo1_unc2
+self.thcav_slo1_unc2[cnt] = self.soma.thcav_slo1_unc2
+self.m_slo1_unc2[cnt] = self.soma.m_slo1_unc2
+self.hcav_slo1_unc2[cnt] = self.soma.hcav_slo1_unc2
+self.mcav_slo1_unc2[cnt] = self.soma.mcav_slo1_unc2
+self.minf_slo2_egl19[cnt] = self.soma.minf_slo2_egl19
+self.tm_slo2_egl19[cnt] = self.soma.tm_slo2_egl19
+self.mcavinf_slo2_egl19[cnt] = self.soma.mcavinf_slo2_egl19
+self.tmcav_slo2_egl19[cnt] = self.soma.tmcav_slo2_egl19
+self.hcavinf_slo2_egl19[cnt] = self.soma.hcavinf_slo2_egl19
+self.thcav_slo2_egl19[cnt] = self.soma.thcav_slo2_egl19
+self.m_slo2_egl19[cnt] = self.soma.m_slo2_egl19
+self.hcav_slo2_egl19[cnt] = self.soma.hcav_slo2_egl19
+self.mcav_slo2_egl19[cnt] = self.soma.mcav_slo2_egl19
+self.minf_slo2_unc2[cnt] = self.soma.minf_slo2_unc2
+self.tm_slo2_unc2[cnt] = self.soma.tm_slo2_unc2
+self.mcavinf_slo2_unc2[cnt] = self.soma.mcavinf_slo2_unc2
+self.tmcav_slo2_unc2[cnt] = self.soma.tmcav_slo2_unc2
+self.hcavinf_slo2_unc2[cnt] = self.soma.hcavinf_slo2_unc2
+self.thcav_slo2_unc2[cnt] = self.soma.thcav_slo2_unc2
+self.m_slo2_unc2[cnt] = self.soma.m_slo2_unc2
+self.hcav_slo2_unc2[cnt] = self.soma.hcav_slo2_unc2
+self.mcav_slo2_unc2[cnt] = self.soma.mcav_slo2_unc2
+self.minf_unc2[cnt] = self.soma.minf_unc2
+self.hinf_unc2[cnt] = self.soma.hinf_unc2
+self.tm_unc2[cnt] = self.soma.tm_unc2
+self.th_unc2[cnt] = self.soma.th_unc2
+self.m_unc2[cnt] = self.soma.m_unc2
+self.h_unc2[cnt] = self.soma.h_unc2
+
+
+********************************************
+
+self.ica_cca1 = np.zeros(n_time_step)
+self.ik_egl2 = np.zeros(n_time_step)
+self.ica_egl19 = np.zeros(n_time_step)
+self.ik_egl36 = np.zeros(n_time_step)
+self.ik_irk = np.zeros(n_time_step)
+self.ik_kqt3 = np.zeros(n_time_step)
+self.ik_kvs1 = np.zeros(n_time_step)
+self.ina_nca = np.zeros(n_time_step)
+self.ik_shk1 = np.zeros(n_time_step)
+self.ik_shl1 = np.zeros(n_time_step)
+self.ik_slo1_egl19 = np.zeros(n_time_step)
+self.ik_slo1_unc2 = np.zeros(n_time_step)
+self.ik_slo2_egl19 = np.zeros(n_time_step)
+self.ik_slo2_unc2 = np.zeros(n_time_step)
+self.ica_unc2 = np.zeros(n_time_step)
+
+
+********************************************
+
+
+ica_cca1 = gbcca1 * neuron.m_cca1 * neuron.m_cca1 * neuron.h_cca1 * (v - 60)
+ik_egl2 = gbegl2 * neuron.m_egl2 * (v + 80)
+ica_egl19 = gbegl19 * neuron.m_egl19 * neuron.h_egl19 * (v - 60)
+ik_egl36 = gbegl36 * (0.33 * neuron.mf_egl36 + 0.36 * neuron.mm_egl36 + 0.39 * neuron.ms_egl36) * (v + 80)
+ik_irk = gbirk * neuron.m_irk * (v + 80)
+ik_kqt3 = gbkqt3 * (0.3 * neuron.mf_kqt3 + 0.7 * neuron.ms_kqt3) * (v + 80)
+ik_kvs1 = gbkvs1 * neuron.m_kvs1 * neuron.h_kvs1 * (v + 80)
+ina_nca = gbnca * (v - 30)
+ik_shk1 = gbshk1 * neuron.m_shk1 * neuron.h_shk1 * (v + 80)
+ik_shl1 = gbshl1 * neuron.m_shl1 * neuron.m_shl1 * neuron.m_shl1 * (0.7 * neuron.hf_shl1 + 0.3 * neuron.hs_shl1) * (v + 80)
+ik_slo1_egl19 = gbslo1 * neuron.m_slo1_egl19 * neuron.hcav_slo1_egl19 * (v + 80)
+ik_slo1_unc2 = gbslo1 * neuron.m_slo1_unc2 * neuron.hcav_slo1_unc2 * (v + 80)
+ik_slo2_egl19 = gbslo2 * neuron.m_slo2_egl19 * neuron.hcav_slo2_egl19 * (v + 80)
+ik_slo2_unc2 = gbslo2 * neuron.m_slo2_unc2 * neuron.hcav_slo2_unc2 * (v + 80)
+ica_unc2 = gbunc2 * neuron.m_unc2 * neuron.h_unc2 * (v - 60)
+
+
+
+*****************************************
+
+[ica_cca1, ik_egl2, ica_egl19, ik_egl36, ik_irk, ik_kqt3, ik_kvs1, ina_nca, ik_shk1, ik_shl1, ik_slo1_egl19, ik_slo1_unc2, ik_slo2_egl19, ik_slo2_unc2, ica_unc2]
+
+******************************************
+base
+
+
+
+
+
+minf_cca1
+hinf_cca1
+tm_cca1
+th_cca1
+m_cca1
+h_cca1
+ica = gbcca1 * m * m * h * (v - 60)
+
+minf_egl2
+tm_egl2
+m_egl2
+ik = gbegl2 * m * (v + 80)
+
+minf_egl19
+hinf_egl19
+tm_egl19
+th_egl19
+m_egl19
+h_egl19
+ica = gbegl19 * m * h * (v - 60)
+
+mfinf_egl36
+mminf_egl36
+msinf_egl36
+tmf_egl36
+tmm_egl36
+tms_egl36
+mf_egl36
+mm_egl36
+ms_egl36
+ik = gbegl36 * (0.33 * mf + 0.36 * mm + 0.39 * ms) * (v + 80)
+
+minf_irk
+tm_irk
+m_irk
+ik = gbirk * m * (v + 80)
+
+
+minf_kqt3
+tmf_kqt3
+tms_kqt3
+winf_kqt3
+sinf_kqt3
+tw_kqt3
+ts_kqt3
+mf_kqt3
+ms_kqt3
+w_kqt3
+s_kqt3
+ik = gbkqt3 * (0.3 * mf + 0.7 * ms) * (v + 80)
+
+
+minf_kvs1
+hinf_kvs1
+tm_kvs1
+th_kvs1
+m_kvs1
+h_kvs1
+ik = gbkvs1 * m * h * (v + 80)
+
+
+ina = gbnca * (v - 30)
+
+minf_shk1
+hinf_shk1
+tm_shk1
+th_shk1
+m_shk1
+h_shk1
+ik = gbshk1 * m * h * (v + 80)
+
+
+minf_shl1
+hfinf_shl1
+hsinf_shl1
+tm_shl1
+thf_shl1
+ths_shl1
+m_shl1
+hf_shl1
+hs_shl1
+ik = gbshl1 * m * m * m * (0.7 * hf + 0.3 * hs) * (v + 80)
+
+
+minf_slo1_egl19
+tm_slo1_egl19
+mcavinf_slo1_egl19
+tmcav_slo1_egl19
+hcavinf_slo1_egl19
+thcav_slo1_egl19
+m_slo1_egl19
+hcav_slo1_egl19
+mcav_slo1_egl19
+ik = gbslo1 * m * hcav * (v + 80)
+
+
+minf_slo1_unc2
+tm_slo1_unc2
+mcavinf_slo1_unc2
+tmcav_slo1_unc2
+hcavinf_slo1_unc2
+thcav_slo1_unc2
+m_slo1_unc2
+hcav_slo1_unc2
+mcav_slo1_unc2
+ik = gbslo1 * m * hcav * (v + 80)
+
+
+minf_slo2_egl19
+tm_slo2_egl19
+mcavinf_slo2_egl19
+tmcav_slo2_egl19
+hcavinf_slo2_egl19
+thcav_slo2_egl19
+m_slo2_egl19
+hcav_slo2_egl19
+mcav_slo2_egl19
+ik = gbslo2 * m * hcav * (v + 80)
+
+
+minf_slo2_unc2
+tm_slo2_unc2
+mcavinf_slo2_unc2
+tmcav_slo2_unc2
+hcavinf_slo2_unc2
+thcav_slo2_unc2
+m_slo2_unc2
+hcav_slo2_unc2
+mcav_slo2_unc2
+ik = gbslo2 * m * hcav * (v + 80)
+
+
+minf_unc2
+hinf_unc2
+tm_unc2
+th_unc2
+m_unc2
+h_unc2
+ica = gbunc2 * m * h * (v - 60)
+
+

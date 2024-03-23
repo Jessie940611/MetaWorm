@@ -1,0 +1,23 @@
+# Original file AIYR.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in AIYR.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\AIYR.swc
+#
+#
+1 1 0.0 0.0 0.0 1.379 -1
+2 1 -0.8 0.97 -0.55 1.379 1
+3 1 0.8 -0.97 0.55 1.379 1
+4 2 -0.09 0.03 -0.04 0.283 1
+5 2 -0.65 0.89 -0.3 0.214 4
+6 2 -9.81 16.6 1.2 0.218 5
+7 2 -10.52 19.3 0.36 0.187 6
+8 2 -9.93 20.51 0.4 0.206 7
+9 2 -8.5 22.0 -0.42 0.232 8
+10 2 -6.47 23.0 -2.3 0.148 9
+11 2 -4.2 24.79 -3.33 0.221 10
+12 2 -2.1 27.1 -3.4 0.25 11
+13 2 -0.47 29.6 -2.51 0.219 12
+14 2 0.5 31.87 -0.82 0.245 13
+15 2 0.56 33.67 1.48 0.241 14
+16 2 -0.14 34.56 3.94 0.25 15

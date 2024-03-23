@@ -1,0 +1,23 @@
+# Original file RMDDR.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in RMDDR.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\RMDDR.swc
+#
+#
+1 1 0.0 0.0 0.0 1.421 -1
+2 1 0.21 0.36 -1.35 1.421 1
+3 1 -0.21 -0.36 1.35 1.421 1
+4 2 0.15 1.44 -1.49 0.195 1
+5 2 0.1 3.02 -3.32 0.218 4
+6 2 0.37 3.46 -3.48 0.212 5
+7 2 3.9 4.6 -3.05 0.221 6
+8 2 5.97 6.89 -2.55 0.25 7
+9 2 7.12 9.74 -2.07 0.219 8
+10 2 7.21 12.71 -1.63 0.245 9
+11 2 6.15 15.43 -1.38 0.241 10
+12 2 4.21 17.32 -1.24 0.25 11
+13 2 1.58 18.3 -1.34 0.168 12
+14 2 -1.28 18.06 -1.55 0.206 13
+15 2 -3.94 16.71 -1.97 0.209 14
+16 2 -6.04 14.46 -2.44 0.18 15

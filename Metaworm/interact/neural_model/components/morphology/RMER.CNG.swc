@@ -1,0 +1,26 @@
+# Original file RMER.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in RMER.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\RMER.swc
+#
+#
+1 1 0.0 0.0 0.0 1.485 -1
+2 1 0.03 -0.2 -1.46 1.485 1
+3 1 -0.03 0.2 1.46 1.485 1
+4 2 -0.33 0.98 0.0 0.321 1
+5 2 -0.46 4.5 -0.01 0.219 4
+6 2 0.75 7.39 -0.04 0.221 5
+7 2 2.77 9.41 -0.01 0.232 6
+8 2 5.43 10.44 0.0 0.195 7
+9 2 8.19 10.15 -0.01 0.195 8
+10 2 10.68 8.75 -0.03 0.148 9
+11 2 12.58 6.34 0.0 0.221 10
+12 2 13.51 3.36 0.0 0.25 11
+13 2 13.38 0.25 -0.01 0.219 12
+14 2 12.25 -2.51 0.0 0.245 13
+15 2 10.16 -4.57 -0.04 0.241 14
+16 2 7.61 -5.5 -0.01 0.25 15
+17 2 4.81 -5.3 -0.05 0.168 16
+18 2 2.24 -3.83 0.0 0.251 17
+19 2 0.33 -0.98 0.0 0.25 18

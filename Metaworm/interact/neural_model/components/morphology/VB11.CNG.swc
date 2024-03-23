@@ -1,0 +1,25 @@
+# Original file VB11.swc edited using StdSwc version 1.31 on 4/18/13.
+# Irregularities and fixes documented in VB11.swc.std.  See StdSwc1.31.doc for more information.
+#
+# SWC to SWC conversion from L-Measure. Sridevi Polavaram: spolavar@gmu.edu
+# Original fileName:C:\Users\praveen\Desktop\DataProcessing\CurrentArchives\Processing\CElegans\Neuronland-EditSWC\VB11.swc
+#
+#
+1 1 0.0 0.0 0.0 2.021 -1
+2 1 -0.44 1.96 -0.12 2.021 1
+3 1 0.44 -1.96 0.12 2.021 1
+4 2 0.16 -1.41 0.07 0.427 1
+5 2 0.54 -4.56 0.15 0.354 4
+6 2 1.65 -21.05 0.98 0.255 5
+7 2 2.5 -26.96 1.25 0.25 6
+8 2 7.84 -54.82 2.83 0.25 7
+9 2 9.42 -59.78 3.27 0.212 8
+10 2 18.48 -86.27 5.77 0.255 9
+11 2 20.96 -90.39 6.43 0.218 10
+12 2 35.85 -112.44 10.35 0.218 11
+13 2 37.33 -114.13 10.74 0.218 12
+14 3 -0.16 1.42 -0.08 0.32 1
+15 3 -1.0 5.97 0.08 0.25 14
+16 3 -1.41 13.26 -0.08 0.212 15
+17 3 -0.4 34.46 -0.01 0.25 16
+18 3 -0.31 36.03 0.0 0.212 17

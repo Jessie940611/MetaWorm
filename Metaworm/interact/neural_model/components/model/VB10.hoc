@@ -1,0 +1,149 @@
+begintemplate VB10
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -1.85, 218.075, -11.4, 3.88201 ) }
+    Soma { pt3dadd( -1.85, 221.95701, -11.4, 3.88201 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -1.85, 218.075, -11.4, 0.73484695 ) }
+    Axon { pt3dadd( -1.85, 219.4, -11.75, 0.73484695 ) }
+    Axon { pt3dadd( -1.85, 222.95, -12.6, 0.6480741 ) }
+    Axon { pt3dadd( -1.5, 230.85, -14.95, 0.50990194 ) }
+    Axon { pt3dadd( -1.45, 249.1, -20.25, 0.42426404 ) }
+    Axon { pt3dadd( -1.45, 256.3, -21.5, 0.5 ) }
+    Axon { pt3dadd( -1.45, 283.3, -25.0, 0.5 ) }
+    Axon { pt3dadd( -1.45, 289.2, -25.5, 0.5 ) }
+    Axon { pt3dadd( -1.45, 317.6, -26.5, 0.5 ) }
+    Axon { pt3dadd( -1.45, 322.8, -26.05, 0.42426404 ) }
+    Axon { pt3dadd( -1.45, 350.75, -23.0, 0.50990194 ) }
+    Axon { pt3dadd( -1.45, 355.35, -21.45, 0.4358899 ) }
+    Axon { pt3dadd( -1.45, 379.9, -11.05, 0.42426404 ) }
+    Axon { pt3dadd( -1.45, 381.95, -10.3, 0.50990194 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 16/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( -1.85, 218.075, -11.4, 0.71414286 ) }
+    Dendrite2 { pt3dadd( -1.85, 216.75, -11.05, 0.71414286 ) }
+    Dendrite2 { pt3dadd( -1.8, 213.25, -10.1, 0.5744563 ) }
+    Dendrite2 { pt3dadd( -1.5, 203.05, -6.9, 0.5744563 ) }
+    Dendrite2 { pt3dadd( -1.45, 178.05, 0.35, 0.4358899 ) }
+    Dendrite2 { pt3dadd( -1.45, 175.7, 0.75, 0.42426404 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 14
+	Dendrite2 nseg = 6
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate VB10
+
+

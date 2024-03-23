@@ -1,0 +1,178 @@
+begintemplate DVA
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -2.345, 394.6, 3.678, 3.0187428 ) }
+    Soma { pt3dadd( -2.345, 397.6187428, 3.678, 3.0187428 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -2.345, 394.6, 3.678, 0.6402687 ) }
+    Axon { pt3dadd( -2.345, 394.53, 3.6509998, 0.6402687 ) }
+    Axon { pt3dadd( -2.831, 393.431, 3.112, 0.48192117 ) }
+    Axon { pt3dadd( -3.9810002, 391.071, 2.0679998, 0.481132 ) }
+    Axon { pt3dadd( -2.637, 385.346, -5.1210003, 0.47828862 ) }
+    Axon { pt3dadd( -1.2609999, 382.553, -9.573, 0.4780209 ) }
+    Axon { pt3dadd( -1.463, 355.358, -21.439, 0.47861883 ) }
+    Axon { pt3dadd( -1.463, 350.739, -22.991, 0.47721696 ) }
+    Axon { pt3dadd( -1.463, 322.783, -26.029, 0.4780209 ) }
+    Axon { pt3dadd( -1.463, 317.644, -26.503, 0.47943717 ) }
+    Axon { pt3dadd( -1.463, 289.169, -25.485, 0.4780209 ) }
+    Axon { pt3dadd( -1.463, 283.305, -25.018002, 0.4780209 ) }
+    Axon { pt3dadd( -1.463, 256.25702, -21.51, 0.4780209 ) }
+    Axon { pt3dadd( -1.463, 249.145, -20.244, 0.47807112 ) }
+    Axon { pt3dadd( -1.464, 174.688, 1.087, 0.4801833 ) }
+    Axon { pt3dadd( -1.463, 167.575, 2.271, 0.48002085 ) }
+    Axon { pt3dadd( -1.464, 125.06799, 4.474, 0.48002085 ) }
+    Axon { pt3dadd( -1.463, 116.23501, 4.46, 0.4786147 ) }
+    Axon { pt3dadd( -1.464, 89.319, -0.487, 0.4800333 ) }
+    Axon { pt3dadd( -1.464, 84.752, -1.9959999, 0.47880685 ) }
+    Axon { pt3dadd( -1.8750001, 77.804, -6.3529997, 0.4725886 ) }
+    Axon { pt3dadd( -2.211, 69.501, -11.827001, 0.46855524 ) }
+    Axon { pt3dadd( -5.843, 65.517006, -10.744, 0.4165093 ) }
+    Axon { pt3dadd( -10.378, 61.816, -12.658999, 0.46703747 ) }
+    Axon { pt3dadd( -13.425, 56.226997, -14.43, 0.4281355 ) }
+    Axon { pt3dadd( -13.309, 47.605, -19.862001, 0.4382876 ) }
+    Axon { pt3dadd( -10.605, 42.071, -24.422, 0.4727029 ) }
+    Axon { pt3dadd( -4.344, 36.12, -30.537998, 0.47843912 ) }
+    Axon { pt3dadd( -1.463, 32.201, -35.333, 0.47898227 ) }
+    Axon { pt3dadd( -1.464, 3.7870002, -50.083, 0.47882357 ) }
+    Axon { pt3dadd( -1.463, -3.4490001, -53.231003, 0.47882357 ) }
+    Axon { pt3dadd( -1.463, -47.151, -65.867004, 0.47884443 ) }
+    Axon { pt3dadd( -1.464, -53.324, -67.068, 0.47851858 ) }
+    Axon { pt3dadd( -1.463, -84.147, -66.674, 0.479925 ) }
+    Axon { pt3dadd( -1.464, -102.354004, -64.013, 0.47843078 ) }
+    Axon { pt3dadd( -1.464, -118.490005, -60.203, 0.47756466 ) }
+    Axon { pt3dadd( -1.464, -135.459, -53.970997, 0.47921184 ) }
+    Axon { pt3dadd( -1.463, -162.827, -40.074, 0.47898227 ) }
+    Axon { pt3dadd( -1.464, -167.617, -37.6, 0.4792369 ) }
+    Axon { pt3dadd( -1.464, -210.193, -8.407, 0.47921184 ) }
+    Axon { pt3dadd( -1.463, -214.966, -5.242, 0.4803707 ) }
+    Axon { pt3dadd( -1.464, -243.343, 14.582001, 0.48062462 ) }
+    Axon { pt3dadd( -1.463, -247.91, 17.366999, 0.47968322 ) }
+    Axon { pt3dadd( -1.9640001, -268.733, 27.205, 0.48282915 ) }
+    Axon { pt3dadd( -2.45, -271.404, 33.438, 0.48254743 ) }
+    Axon { pt3dadd( -3.577, -272.72, 36.007, 0.48088256 ) }
+    Axon { pt3dadd( -4.802, -273.156, 38.11, 0.39507467 ) }
+    Axon { pt3dadd( -7.119, -273.407, 39.839, 0.4022636 ) }
+    Axon { pt3dadd( -8.688, -273.783, 42.467003, 0.4014424 ) }
+    Axon { pt3dadd( -9.201, -274.205, 45.482002, 0.40333113 ) }
+    Axon { pt3dadd( -8.655, -274.66, 48.519, 0.40116832 ) }
+    Axon { pt3dadd( -7.121, -274.998, 51.095997, 0.43534353 ) }
+    Axon { pt3dadd( -4.8129997, -275.3, 52.814, 0.4349207 ) }
+    Axon { pt3dadd( -2.108, -275.368, 53.405, 0.4497822 ) }
+    Axon { pt3dadd( 0.596, -275.3, 52.814, 0.4349207 ) }
+    Axon { pt3dadd( 2.904, -274.998, 51.095997, 0.4330958 ) }
+    Axon { pt3dadd( 4.438, -274.66, 48.519, 0.40190047 ) }
+    Axon { pt3dadd( 4.9839997, -274.20398, 45.482002, 0.40232325 ) }
+    Axon { pt3dadd( 4.4709997, -273.783, 42.467003, 0.4006295 ) }
+    Axon { pt3dadd( 2.903, -273.407, 39.839, 0.4022636 ) }
+    Axon { pt3dadd( 0.63299996, -273.155, 38.111, 0.40208954 ) }
+    Axon { pt3dadd( -0.0019999999, -273.088, 36.629, 0.40106857 ) }
+    Axon { pt3dadd( -0.306, -273.088, 34.036, 0.4006944 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 63
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate DVA
+
+
