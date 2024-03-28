@@ -28,28 +28,35 @@ To ensure optimal performance and compatibility, we recommend installing and run
 - Nvidia Optix: 7.0.0
 
 ## Installation Guide
+### Get code
+```
+sudo apt install git
+git clone https://github.com/Jessie940611/MetaWorm.git
+```
 ### C++ 
 #### Basic C++ library
 ```
-sudo apt-get update
-sudo apt-get install build-essential cmake-curses-gui git
-sudo apt-get install libeigen3-dev freeglut3-dev libtinyxml-dev libpython3-dev python3-numpy libopenmpi-dev
+sudo apt update
+sudo apt install make cmake libeigen3-dev freeglut3-dev libglew-dev libpython3-dev python3-pip libopenmpi-dev
 ```
-#### Boost 1.66 with Python3 : **Boost library should install from the source code!**  
-- Download Boost 1.66 source code as zip file in [https://www.boost.org/users/history/version_1_66_0.html](https://www.boost.org/users/history/version_1_66_0.html).
-- Unzip the file. ``` tar -xvf boost_1_66_0.tar.gz ```
-- Compile and install the source code:
+#### Build Boost from source (Boost 1.79 tested)
+get Boost
 ```
-cd boost_1_66_0
-sudo ./bootstrap.sh --with-python=python3
-sudo ./b2 --with-python --with-filesystem --with-system install
+wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
 ```
-#### Build
+build and install boost to path you want
 ```
-cd XXXX
+tar -xzf boost_1_79_0.tar.gz
+cd boost_1_79_0
+./bootstrap --with-python=python3
+./b2 --with-python --with-filesystem --with-system --prefix="PATH_YOU_WANT" install
+```
+### Build
+```
+cd PROJECT_ROOT_DIR
 mkdir build
 cd build 
-cmake ..
+cmake ../neuronXcore -G"Unix Makefiles" -DCUDA_TOOLKIT_ROOT_DIR="path to cuda root" -DOptiX_INCLUDE="path to optix library/include" -DBoost_DIR="path to BoostConfig.cmake"
 make -j8
 ```
 ### Python

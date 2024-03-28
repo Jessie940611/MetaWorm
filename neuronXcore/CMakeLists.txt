@@ -32,6 +32,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${owl_dir}/owl/common/cmake/")
 include(configure_cuda)
 include(configure_owl)
 
+set(BIN2C ${CUDA_TOOLKIT_ROOT_DIR}/bin/bin2c)
+
 #include(configure_optix)
 #include(configure_build_type)
 
@@ -93,10 +95,9 @@ endif (VERBOSE_MODE)
 
 
 # -------------------------------------------------------
+
 add_subdirectory(rtn)
 
-#add_subdirectory(triangle)
-#add_subdirectory(tools)
 
 #if (TARGET glfw)
 #	install(TARGETS glfw imgui llowl_static owl_static owl_viewer neuronXcore)
