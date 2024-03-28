@@ -194,11 +194,11 @@ namespace rtn
 
 		Py_Initialize();
 		wchar_t **_argv = (wchar_t **)PyMem_Malloc(sizeof(wchar_t *) * argc);
-		// for (int i = 0; i < argc; i++)
-		// {
-		// 	wchar_t *arg = Py_DecodeLocale(argv[i], NULL);
-		// 	_argv[i] = arg;
-		// }
+		for (int i = 0; i < argc; i++)
+		{
+			wchar_t *arg = Py_DecodeLocale(argv[i], NULL);
+			_argv[i] = arg;
+		}
 
 		PySys_SetArgv(argc, _argv);
 		boost::python::numpy::initialize();
