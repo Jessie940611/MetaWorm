@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "../../libsim.pdb"
+  "../../libsim.so"
   "CMakeFiles/sim.dir/Environment.cpp.o"
   "CMakeFiles/sim.dir/KeyWorm.cpp.o"
   "CMakeFiles/sim.dir/Muscle.cpp.o"
@@ -18,8 +20,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/sim.dir/util/json/json_reader.cpp.o"
   "CMakeFiles/sim.dir/util/json/json_value.cpp.o"
   "CMakeFiles/sim.dir/util/json/json_writer.cpp.o"
-  "../../libsim.pdb"
-  "../../libsim.a"
 )
 
 # Per-language clean rules from dependency scanning.

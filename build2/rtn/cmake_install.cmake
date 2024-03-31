@@ -1,4 +1,4 @@
-# Install script for directory: /home/brains/worm_simulation/interact/worm-simulation/neuronXcore/rtn
+# Install script for directory: /home/lifesim/MetaWorm/neuronXcore/rtn
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

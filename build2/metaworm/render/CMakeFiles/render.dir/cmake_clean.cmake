@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "../../librender.pdb"
+  "../../librender.so"
   "CMakeFiles/render.dir/Camera.cpp.o"
   "CMakeFiles/render.dir/DrawFunctions.cpp.o"
   "CMakeFiles/render.dir/DrawPrimitives.cpp.o"
@@ -6,8 +8,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/render.dir/SimulationWindow.cpp.o"
   "CMakeFiles/render.dir/lodepng.cpp.o"
   "CMakeFiles/render.dir/main.cpp.o"
-  "../../librender.pdb"
-  "../../librender.a"
 )
 
 # Per-language clean rules from dependency scanning.

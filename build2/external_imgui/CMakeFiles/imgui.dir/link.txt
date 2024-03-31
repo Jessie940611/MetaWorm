@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -std=c++11 -O3 -DNDEBUG  -shared -Wl,-soname,libimgui.so -o ../libimgui.so CMakeFiles/imgui.dir/imgui.cpp.o CMakeFiles/imgui.dir/imgui_demo.cpp.o CMakeFiles/imgui.dir/imgui_draw.cpp.o CMakeFiles/imgui.dir/imgui_impl_glfw_gl2.cpp.o -lglfw -lGL 
+/usr/bin/c++ -fPIC -std=c++11 -O3 -DNDEBUG  -shared -Wl,-soname,libimgui.so -o ../libimgui.so CMakeFiles/imgui.dir/imgui.cpp.o CMakeFiles/imgui.dir/imgui_demo.cpp.o CMakeFiles/imgui.dir/imgui_draw.cpp.o CMakeFiles/imgui.dir/imgui_impl_glfw_gl2.cpp.o  -Wl,-rpath,/home/lifesim/MetaWorm/build2 ../libglfw.so.3.4 -lGL 

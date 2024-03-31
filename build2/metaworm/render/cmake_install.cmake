@@ -1,4 +1,4 @@
-# Install script for directory: /home/brains/worm_simulation/interact/worm-simulation/Metaworm/render
+# Install script for directory: /home/lifesim/MetaWorm/Metaworm/render
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

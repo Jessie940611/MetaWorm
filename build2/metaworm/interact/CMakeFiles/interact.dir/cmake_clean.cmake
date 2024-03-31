@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/interact.dir/interact.cpp.o"
   "../../interact.pdb"
   "../../interact.so"
+  "CMakeFiles/interact.dir/interact.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imconfig.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imconfig.h
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.cpp
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.cpp
 imgui.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.h
 imgui_internal.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_internal.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_internal.h
 ctype.h
 -
 stdlib.h
@@ -24,7 +24,7 @@ stddef.h
 stdint.h
 -
 stb_textedit.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_textedit.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_textedit.h
 Windows.h
 -
 windows.h
@@ -32,11 +32,11 @@ windows.h
 imm.h
 -
 imgui_user.inl
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_user.inl
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_user.inl
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.h
 imconfig.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imconfig.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imconfig.h
 float.h
 -
 stdarg.h
@@ -48,11 +48,11 @@ string.h
 assert.h
 -
 imgui_user.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_user.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_user.h
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_demo.cpp
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_demo.cpp
 imgui.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.h
 ctype.h
 -
 math.h
@@ -66,11 +66,11 @@ stddef.h
 stdint.h
 -
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_draw.cpp
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_draw.cpp
 imgui.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.h
 imgui_internal.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_internal.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_internal.h
 stdio.h
 -
 malloc.h
@@ -80,23 +80,23 @@ alloca.h
 stdlib.h
 -
 stb_rect_pack.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_rect_pack.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_rect_pack.h
 stb_truetype.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_truetype.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_truetype.h
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.cpp
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.cpp
 imgui.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui.h
 imgui_impl_glfw_gl2.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.h
 GLFW/glfw3.h
 -
 GLFW/glfw3native.h
 -
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_impl_glfw_gl2.h
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/imgui_internal.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/imgui_internal.h
 stdio.h
 -
 math.h
@@ -104,25 +104,25 @@ math.h
 limits.h
 -
 stb_textedit.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_textedit.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_textedit.h
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_rect_pack.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_rect_pack.h
 stdlib.h
 -
 assert.h
 -
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_textedit.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_textedit.h
 string.h
 -
 
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_truetype.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_truetype.h
 stb_truetype.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_truetype.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_truetype.h
 stdio.h
 -
 stb_truetype.h
-/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/imgui/stb_truetype.h
+/home/lifesim/MetaWorm/neuronXcore/ext/imgui/stb_truetype.h
 math.h
 -
 math.h
@@ -140,5 +140,69 @@ assert.h
 string.h
 -
 string.h
+-
+
+/home/lifesim/MetaWorm/owl/samples/common/3rdParty/glfw/include/GLFW/glfw3.h
+stddef.h
+-
+stdint.h
+-
+vulkan/vulkan.h
+-
+GLES/gl.h
+-
+GLES/glext.h
+-
+GLES2/gl2.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl3.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl31.h
+-
+GLES2/gl2ext.h
+-
+GLES3/gl32.h
+-
+GLES2/gl2ext.h
+-
+OpenGL/gl3.h
+-
+OpenGL/gl3ext.h
+-
+GL/glcorearb.h
+-
+OpenGL/gl.h
+-
+OpenGL/glu.h
+-
+GL/gl.h
+-
+GL/glext.h
+-
+GL/glu.h
+-
+
+/home/lifesim/MetaWorm/owl/samples/common/3rdParty/glfw/include/GLFW/glfw3native.h
+windows.h
+-
+Cocoa/Cocoa.h
+-
+ApplicationServices/ApplicationServices.h
+-
+X11/Xlib.h
+-
+X11/extensions/Xrandr.h
+-
+wayland-client.h
+-
+GL/glx.h
+-
+EGL/egl.h
+-
+GL/osmesa.h
 -
 

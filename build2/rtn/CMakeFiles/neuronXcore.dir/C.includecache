@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx_embedded.c
+/home/lifesim/MetaWorm/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx_embedded.c
 
-/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/cuda_compile_ptx_2_generated_basicNeurons.cu.ptx_embedded.c
+/home/lifesim/MetaWorm/build2/rtn/cuda_compile_ptx_2_generated_basicNeurons.cu.ptx_embedded.c
 

@@ -58,24 +58,25 @@ endif()
 
 # Set these up as variables to make reading the generated file easier
 set(CMAKE_COMMAND "/usr/bin/cmake") # path
-set(source_file "/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/rtn/device/common.cu") # path
-set(NVCC_generated_dependency_file "/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/CMakeFiles/cuda_compile_ptx_1.dir/device/cuda_compile_ptx_1_generated_common.cu.ptx.NVCC-depend") # path
-set(cmake_dependency_file "/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/CMakeFiles/cuda_compile_ptx_1.dir/device/cuda_compile_ptx_1_generated_common.cu.ptx.depend") # path
-set(CUDA_make2cmake "/usr/share/cmake-3.10/Modules/FindCUDA/make2cmake.cmake") # path
-set(CUDA_parse_cubin "/usr/share/cmake-3.10/Modules/FindCUDA/parse_cubin.cmake") # path
+set(source_file "/home/lifesim/MetaWorm/neuronXcore/rtn/device/common.cu") # path
+set(NVCC_generated_dependency_file "/home/lifesim/MetaWorm/build2/rtn/CMakeFiles/cuda_compile_ptx_1.dir/device/cuda_compile_ptx_1_generated_common.cu.ptx.NVCC-depend") # path
+set(cmake_dependency_file "/home/lifesim/MetaWorm/build2/rtn/CMakeFiles/cuda_compile_ptx_1.dir/device/cuda_compile_ptx_1_generated_common.cu.ptx.depend") # path
+set(CUDA_make2cmake "/usr/share/cmake-3.16/Modules/FindCUDA/make2cmake.cmake") # path
+set(CUDA_parse_cubin "/usr/share/cmake-3.16/Modules/FindCUDA/parse_cubin.cmake") # path
 set(build_cubin OFF) # bool
-set(CUDA_HOST_COMPILER "/usr/bin/gcc-7") # path
+set(CUDA_HOST_COMPILER "/usr/bin/cc") # path
 # We won't actually use these variables for now, but we need to set this, in
 # order to force this file to be run again if it changes.
-set(generated_file_path "/home/brains/worm_simulation/interact/worm-simulation/build2/rtn") # path
-set(generated_file_internal "/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx") # path
-set(generated_cubin_file_internal "/home/brains/worm_simulation/interact/worm-simulation/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx.cubin.txt") # path
+set(generated_file_path "/home/lifesim/MetaWorm/build2/rtn") # path
+set(generated_file_internal "/home/lifesim/MetaWorm/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx") # path
+set(generated_cubin_file_internal "/home/lifesim/MetaWorm/build2/rtn/cuda_compile_ptx_1_generated_common.cu.ptx.cubin.txt") # path
 
-set(CUDA_NVCC_EXECUTABLE "/usr/local/cuda-10.0/bin/nvcc") # path
+set(CUDA_NVCC_EXECUTABLE "/usr/local/cuda/bin/nvcc") # path
 set(CUDA_NVCC_FLAGS  ;; -O3;-DNDEBUG=1;--use_fast_math) # list
 
 set(nvcc_flags -m64;--std;c++11) # list
-set(CUDA_NVCC_INCLUDE_DIRS "/usr/local/cuda-10.0/include;/usr/local/cuda-10.0/include;/usr/include;/home/brains/worm_simulation/interact/worm-simulation/neuronXcore;/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext;/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/ext/glad/include;/usr/local/cuda-10.0/include;/home/brains/NVIDIA-OptiX-SDK-7.0.0-linux64/include;/home/brains/worm_simulation/interact/worm-simulation/owl/owl/include;/home/brains/worm_simulation/interact/worm-simulation/owl;/usr/lib/x86_64-linux-gnu/cmake/glfw3;/home/brains/worm_simulation/interact/worm-simulation/neuronXcore/../owl/samples/common;/home/brains/worm_simulation/interact/worm-simulation/Metaworm/render;/usr/include/eigen3;/usr/include/python3.6m;/usr/local/include;/usr/include;/usr/include;/home/brains/worm_simulation/interact/worm-simulation/Metaworm/interact;/home/brains/worm_simulation/interact/worm-simulation/Metaworm/sim;/usr/include/eigen3;/usr/include/python3.6m;/usr/local/include;/usr/local/include") # list (needs to be in quotes to handle spaces properly).
+set(CUDA_NVCC_INCLUDE_DIRS [==[/usr/local/cuda/include;/usr/local/cuda/include;/home/lifesim/MetaWorm/neuronXcore;/home/lifesim/MetaWorm/neuronXcore/ext;/home/lifesim/MetaWorm/neuronXcore/ext/glad/include;/usr/local/cuda/include;/home/lifesim/Optix-7.0.0/include;/home/lifesim/MetaWorm/owl/owl/include;/home/lifesim/MetaWorm/owl;/home/lifesim/MetaWorm/neuronXcore/../owl/samples/common/3rdParty/glfw;/home/lifesim/MetaWorm/neuronXcore/../owl/samples/common;/home/lifesim/MetaWorm/Metaworm/render;/usr/include/eigen3;/usr/include/python3.8;/home/lifesim/boost-1.79.0/include;/usr/include;/usr/include;/home/lifesim/MetaWorm/Metaworm/interact;/home/lifesim/MetaWorm/Metaworm/sim;/usr/include/eigen3;/usr/include/python3.8;/home/lifesim/boost-1.79.0/include;/usr/include]==]) # list (needs to be in lua quotes to address backslashes)
+string(REPLACE "\\" "/" CUDA_NVCC_INCLUDE_DIRS "${CUDA_NVCC_INCLUDE_DIRS}")
 set(CUDA_NVCC_COMPILE_DEFINITIONS [==[]==]) # list (needs to be in lua quotes see #16510 ).
 set(format_flag "-ptx") # string
 set(cuda_language_flag ) # list
@@ -125,7 +126,7 @@ list(APPEND CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS_${build_configuration}})
 list( FIND CUDA_NVCC_FLAGS "-ccbin" ccbin_found0 )
 list( FIND CUDA_NVCC_FLAGS "--compiler-bindir" ccbin_found1 )
 if( ccbin_found0 LESS 0 AND ccbin_found1 LESS 0 AND CUDA_HOST_COMPILER )
-  if (CUDA_HOST_COMPILER STREQUAL "$(VCInstallDir)bin" AND DEFINED CCBIN)
+  if (CUDA_HOST_COMPILER STREQUAL "" AND DEFINED CCBIN)
     set(CCBIN -ccbin "${CCBIN}")
   else()
     set(CCBIN -ccbin "${CUDA_HOST_COMPILER}")
@@ -179,15 +180,15 @@ cuda_execute_process(
 # For CUDA 2.3 and below, -G -M doesn't work, so remove the -G flag
 # for dependency generation and hope for the best.
 set(depends_CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS}")
-set(CUDA_VERSION 10.0)
+set(CUDA_VERSION 11.4)
 if(CUDA_VERSION VERSION_LESS "3.0")
-  # Note that this will remove all occurances of -G.
+  # Note that this will remove all occurrences of -G.
   list(REMOVE_ITEM depends_CUDA_NVCC_FLAGS "-G")
 endif()
 
 # nvcc doesn't define __CUDACC__ for some reason when generating dependency files.  This
 # can cause incorrect dependencies when #including files based on this macro which is
-# defined in the generating passes of nvcc invokation.  We will go ahead and manually
+# defined in the generating passes of nvcc invocation.  We will go ahead and manually
 # define this for now until a future version fixes this bug.
 set(CUDACC_DEFINE -D__CUDACC__)
 

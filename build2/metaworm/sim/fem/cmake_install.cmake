@@ -1,4 +1,4 @@
-# Install script for directory: /home/brains/worm_simulation/interact/worm-simulation/Metaworm/sim/fem
+# Install script for directory: /home/lifesim/MetaWorm/Metaworm/sim/fem
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

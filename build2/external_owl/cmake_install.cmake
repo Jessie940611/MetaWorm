@@ -1,4 +1,4 @@
-# Install script for directory: /home/brains/worm_simulation/interact/worm-simulation/owl
+# Install script for directory: /home/lifesim/MetaWorm/owl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/brains/worm_simulation/interact/worm-simulation/build2/external_owl/owl/cmake_install.cmake")
+  include("/home/lifesim/MetaWorm/build2/external_owl/owl/cmake_install.cmake")
 
 endif()
 

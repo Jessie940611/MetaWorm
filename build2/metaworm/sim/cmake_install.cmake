@@ -1,4 +1,4 @@
-# Install script for directory: /home/brains/worm_simulation/interact/worm-simulation/Metaworm/sim
+# Install script for directory: /home/lifesim/MetaWorm/Metaworm/sim
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/brains/worm_simulation/interact/worm-simulation/build2/metaworm/sim/fem/cmake_install.cmake")
+  include("/home/lifesim/MetaWorm/build2/metaworm/sim/fem/cmake_install.cmake")
 
 endif()
 

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/fem.dir/World.cpp.o"
+  "../../../libfem.pdb"
+  "../../../libfem.so"
   "CMakeFiles/fem.dir/Constraint/AttachmentConstraint.cpp.o"
   "CMakeFiles/fem.dir/Constraint/Constraint.cpp.o"
   "CMakeFiles/fem.dir/Constraint/CorotateFEMConstraint.cpp.o"
@@ -11,8 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/fem.dir/Mesh/MeditMesh.cpp.o"
   "CMakeFiles/fem.dir/Mesh/Mesh.cpp.o"
   "CMakeFiles/fem.dir/Mesh/OBJMesh.cpp.o"
-  "../../../libfem.pdb"
-  "../../../libfem.a"
+  "CMakeFiles/fem.dir/World.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.
