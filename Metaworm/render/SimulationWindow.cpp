@@ -18,15 +18,15 @@ static int g_fogMode[] = {GL_LINEAR, GL_EXP, GL_EXP2};
 SimulationWindow::SimulationWindow()
 	: GLWindow(), mCurFrame(0), mTotalFrame(0), mElapsedTime(0.0), mFocusWormId(0), mPlay(false), mController(MetaController::MC_Default_Key),
 	  mbDrawTets(false), mbDrawCreature(true), mbDrawMuscles(true), mbDrawArrows(false), mbDrawSamplingPoints(false), mbDrawLocalCoord(false),
-	  mbDrawWorld(true), mbDraw2DGraph(false), mbDrawAxis(false), mbDrawPath(true), mbDrawReferenceTets(false), mDrawFood(true), mStartScreenShot(false)
+	  mbDrawWorld(true), mbDraw2DGraph(true), mbDrawAxis(false), mbDrawPath(true), mbDrawReferenceTets(false), mDrawFood(true), mStartScreenShot(false)
 {
 	mDisplayTimeout = 33;
-	mWorldFogColor = Eigen::Vector4d(53.0 / 255.0, 214.0 / 255.0, 237.0 / 255.0, 1.0);
+	mWorldFogColor = Eigen::Vector4d(.7, .8, .8, 1.0);
 	mFogMode = GL_EXP;
 	mFogParams = Eigen::Vector3d(0.05, 4.0, 8.0);
 
 	initLights(mWorldFogColor, mFogMode, mFogParams);
-	mWorldFloorColor = Eigen::Vector4d(120 / 255.0, 120 / 255.0, 120 / 255.0, 1.0);
+	mWorldFloorColor = Eigen::Vector4d(.2, .4, .8, 1.0);
 
 	mCamera->SetCamera(Eigen::Vector3d(0, 0.1, 0) /*lookat*/, Eigen::Vector3d(1.2, 0, 0) /*eye*/, Eigen::Vector3d(0, 1, 0) /*up*/);
 
@@ -251,7 +251,7 @@ void SimulationWindow::Display()
 	//-------------------World Axis-------------------------
 	if (mbDrawAxis)
 	{
-		GUI::DrawAxis(Eigen::Vector3d(0, 0, 0));
+		GUI::DrawAxis(focusPosition);
 	}
 
 	if (mDrawFood)
@@ -370,7 +370,7 @@ void SimulationWindow::DisplayWorm(Environment *mEnvironment, std::deque<Eigen::
 			GUI::DrawArrow3D(t+r*ref_head_pos, body_up * scale * 3, thickness*2, Eigen::Vector3d(0.3, 1.0, 0.3));
 			GUI::DrawArrow3D(t+r*ref_head_pos, body_forward.cross(body_up) * scale * 3, thickness*2, Eigen::Vector3d(0.3, 0.3, 1.0));
 			// world coord at ref head position. used for test.
-			//GUI::DrawAxis(r*ref_head_pos+t);
+			GUI::DrawAxis(r*ref_head_pos+t);
 		}
 
 		//-------------------Reference Coord Trajectory------------------

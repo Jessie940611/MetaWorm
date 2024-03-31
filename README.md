@@ -37,7 +37,7 @@ git clone https://github.com/Jessie940611/MetaWorm.git
 #### Basic C++ library
 ```
 sudo apt update
-sudo apt install make cmake libeigen3-dev freeglut3-dev libglew-dev libpython3-dev python3-pip libopenmpi-dev
+sudo apt install cmake libpython3-dev python3-pip libeigen3-dev libgl-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev freeglut3-dev libglew-dev 
 ```
 #### Build Boost from source (Boost 1.79 tested)
 get Boost
@@ -74,12 +74,8 @@ nrnivmodl modfile
 Experience the simulation of C. elegans movement with our demo.   
 Execute the open-loop simulation of *C. elegans* movement.
 ```
+cd MetaWorm/build
 ./neuronXcore -data ../eworm/ghost_in_mesh_sim/data/tuned/video_offline/video_offline_neuronX
-```
-
-Execute the closed-loop simulation of *C. elegans* movement.
-```
-./neuronXcore -data ../eworm/ghost_in_mesh_sim/data/tuned/video_online/video_online_neuronX
 ```
 
 ## Instructions for Use
@@ -95,6 +91,10 @@ Adjust the parameters of the neural network model by modifying the respective fi
 │   │   ├── connection # adjacency matrix
 ├── network
 │   ├── config.json    # network config
+```
+Run the script to generate a neural network model
+```
+python test.py
 ```
 #### Fitting the neural network data
 The `eworm_learn` file contains code to training the neural network model to fit the target data. The target data can be Preason Correlation Matrix of neurons' membrane potentials, or the Calcium signals of neurons. This training algorithm requires GPUs to run and supports multiple GPUs.   
@@ -132,7 +132,9 @@ cd MetaWorm/eworm/ghost_in_mesh_sim
 # Set parameters in 03_make_morph.py
 python 03_make_morph.py
 ```
-Run the simulation of *C. elegans* movement
+Set parameters in `worm_in_env.py`, like `group_name` and parameters in `config`.
+If you want to do perturbation experiment, replace the corresponding function in line 58 of `worm_neural_network.py`.
+Run the simulation of *C. elegans* movement.
 ```
 ./neuronXcore -data [directory of your morphological data]
 ```

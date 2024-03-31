@@ -94,27 +94,27 @@ void GUI::DrawWorld(Eigen::Vector4d floorColor)
     glLoadIdentity();
     glRasterPos2f(0, 0);
 
-	glBegin(GL_QUADS);
-	glColor3f(0.2f, 0.2f, 0.2f);
-	glVertex2f(0.f, 0.f);
-	glColor3f(0.2f, 0.2f, 0.2f);
-	glVertex2f(1.f, 0.f);
-	glColor3f(0.2f, 0.8f, 0.9f);
-	glVertex2f(1.f, .4f);
-	glColor3f(0.2f, 0.8f, 0.9f);
-	glVertex2f(0.f, .4f);
-	glEnd();
+	// glBegin(GL_QUADS);
+	// glColor3f(0.2f, 0.2f, 0.2f);
+	// glVertex2f(0.f, 0.f);
+	// glColor3f(0.2f, 0.2f, 0.2f);
+	// glVertex2f(1.f, 0.f);
+	// glColor3f(0.2f, 0.8f, 0.9f);
+	// glVertex2f(1.f, .4f);
+	// glColor3f(0.2f, 0.8f, 0.9f);
+	// glVertex2f(0.f, .4f);
+	// glEnd();
 
-	glBegin(GL_QUADS);
-	glColor3f(0.2f, 0.8f, 0.9f);
-	glVertex2f(0.f, .4f);
-	glColor3f(0.2f, 0.8f, 0.9f);
-	glVertex2f(1.f, 0.4f);
-	glColor3f(0.9f, 0.9f, 0.9f);
-	glVertex2f(1.f, 1.f);
-	glColor3f(0.9f, 0.9f, 0.9f);
-	glVertex2f(0.f, 1.f);
-	glEnd();
+	// glBegin(GL_QUADS);
+	// glColor3f(0.2f, 0.8f, 0.9f);
+	// glVertex2f(0.f, .4f);
+	// glColor3f(0.2f, 0.8f, 0.9f);
+	// glVertex2f(1.f, 0.4f);
+	// glColor3f(0.9f, 0.9f, 0.9f);
+	// glVertex2f(1.f, 1.f);
+	// glColor3f(0.9f, 0.9f, 0.9f);
+	// glVertex2f(0.f, 1.f);
+	// glEnd();
 
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
@@ -125,7 +125,7 @@ void GUI::DrawWorld(Eigen::Vector4d floorColor)
 
 	glDepthFunc(GL_LEQUAL);
 
-    //glEnable(GL_LIGHTING);  
+    glDisable(GL_LIGHTING);  
 }
 
 void GUI::DrawCharacter(Worm* pCreature, const Eigen::VectorXd& x, const Eigen::Vector3d& eye, const Eigen::Vector4d& color)
@@ -298,7 +298,7 @@ void GUI::DrawActivations(const double& x, const double& y, const double& length
     glMatrixMode(oldMode);
 
 	glDepthFunc(GL_LEQUAL);
-    glEnable(GL_LIGHTING);  
+    // glEnable(GL_LIGHTING);  
 }
 
 // void GUI::DrawActivations(const double& x, const double& y, const double& length, const double& height, Muscle* muscle1, Muscle* muscle2)

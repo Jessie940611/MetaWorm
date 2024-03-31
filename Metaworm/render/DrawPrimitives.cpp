@@ -270,11 +270,11 @@ void GUI::DrawArrow3D(const Eigen::Vector3d& _pt, const Eigen::Vector3d& _vec, c
     glPushMatrix();
     glTranslatef(_pt[0], _pt[1], _pt[2]);
     glRotated(acos(normDir[2])*180/M_PI, -normDir[1], normDir[0], 0);
-    gluCylinder(c, _thickness, _thickness, _length-arrowLength, 16, 16);
+    gluCylinder(c, _thickness, _thickness, arrowLength, 16, 16);
 
     // draw the arrowhed as a cone
     glPushMatrix();
-    glTranslatef(0, 0, _length-arrowLength);
+    glTranslatef(0, 0, arrowLength);
     gluCylinder(c, arrowLength*0.5, 0.0, arrowLength, 10, 10);
     glPopMatrix();
 

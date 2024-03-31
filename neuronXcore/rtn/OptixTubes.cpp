@@ -56,7 +56,7 @@ namespace rtn {
 		int numGPUsFound = 1;
 #endif
 
-		context = owlContextCreate(nullptr);
+		context = owlContextCreate(nullptr, 1);
 		int numContextGPUsFound = owlGetDeviceCount(context);
 		printf("Context created;\n owl found %d GPUs \n", numContextGPUsFound);
 

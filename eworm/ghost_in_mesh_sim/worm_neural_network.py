@@ -55,7 +55,7 @@ class WormNeuralNetwork(object):
         # abstract2detailed_shuffle_weight(abs_circuit, config, shuffle_target="gj")
         # abstract2detailed_remove(abs_circuit, config, remove_target="syn")
         # abstract2detailed_remove(abs_circuit, config, remove_target="gj")
-        circuit = transform.abstract2detailed_remove(abs_circuit, config, remove_target="gj")
+        circuit = transform.abstract2detailed(abs_circuit, config)
         self.neuron_num = len(circuit.cells)
         self.nseg = 0
         for cell in circuit.cells:

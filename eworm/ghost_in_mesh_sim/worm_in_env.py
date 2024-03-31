@@ -1,7 +1,6 @@
 import os
 import sys
-# sys.path.append('/home/brains/worm_simulation/interact/MetaWorm0509-interact-0511/MetaWorm0509/interact/interact.so')
-sys.path.append('/home/brains/worm_simulation/interact/worm-simulation/build2/')
+sys.path.append('/home/lifesim/MetaWorm/build/')
 import interact
 import numpy as np
 import os
@@ -29,7 +28,6 @@ class WormInEnv(object):
     def __init__(self, color_list=None, config=None, food_location=None,
                  start_location=None, orientation=None, target_location=None) -> None:
         print(sys.path)
-        print("aaaa")
         if color_list is None:
             color_list = [
                 np.array([0.9, 0.9, 0.9, 0.6], dtype = np.float32),
@@ -48,14 +46,14 @@ class WormInEnv(object):
                 normalize_rgb(np.array([255,249,206,102], dtype=np.float32)),
                 normalize_rgb(np.array([185,208,184,102], dtype=np.float32)),
             ]
-        group_name = "video_online"
+        group_name = "video_offline"
         if config is None:
             config = {
                 "config_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_config.json"),
                 "abs_circuit_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_abscircuit.pkl"),
                 "cnn_model_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_cnn_model.pt"),
                 # "init_muscle_file": os.path.join(os.path.dirname(__file__), "output", "test", "gt_eworm.muscle-220428-152601.txt"),
-                "init_muscle_file": "/home/brains/worm_simulation/interact/worm-simulation/build/test.npy",
+                "init_muscle_file": os.path.join(os.path.dirname(__file__), "output", "test.npy"),
                 "input_neuron": ["AWAL","AWAR","AWCL","AWCR","ASKL","ASKR","ALNL","ALNR","PLML","PHAL","PHAR","URYDL","URYDR","URYVL","URYVR"],
                 "output_neuron": ["RIML", "RIMR", "RMEL", "RMER", "RMED", "RMEV", "RMDDL", "RMDDR", "RMDL", "RMDR", "RMDVL", "RMDVR", "RIVL", "RIVR", "SMDDL", "SMDDR", "SMDVL", "SMDVR", "SMBDL", "SMBDR", "SMBVL", "SMBVR", "DA01", "DA02", "DA03", "DA04", "DA05", "DA06", "DA07", "DA08", "DA09", "DB01", "DB02", "DB03", "DB04", "DB05", "DB06", "DB07", "DD01", "DD02", "DD03", "DD04", "DD05", "DD06", "VA01", "VA02", "VA03", "VA04", "VA05", "VA06", "VA07", "VA08", "VA09", "VA10", "VA11", "VA12", "VB01", "VB02", "VB03", "VB04", "VB05", "VB06", "VB07", "VB08", "VB09", "VB10", "VB11", "VD01", "VD02", "VD03", "VD04", "VD05", "VD06", "VD07", "VD08", "VD09", "VD10", "VD11", "VD12", "VD13"],
                 "neuron_sim_dt": 5/3,
@@ -67,8 +65,8 @@ class WormInEnv(object):
                 "detail_control": "fc",  # "one_cnn", "multi_cnn", "fc"
                 "neuron_muscle_matrix": os.path.join(os.path.dirname(__file__), "..", "components", "param", "connection", "neuron_muscle.xlsx"),
                 "reservoir_wout": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_wout.pkl"),
-                "interaction_mode": "online",
-                "export_data": True  # default False
+                "interaction_mode": "offline",
+                "export_data": False  # default False
             }
         if food_location is None:
             food_location = np.array([1.8275,-0.0276,-0.3082], dtype=np.float32)  #np.array([0, 0, 0], dtype=np.float32) # global
@@ -89,12 +87,12 @@ class WormInEnv(object):
             ]
         self.config = config
         self.state_config = None
-        self.standard_input_signal = data_factory.ghost_in_mesh_data_factory_standard(len(self.config["input_neuron"]), self.config["tstop"], self.config["neuron_sim_dt"], os.path.join("data", "state", "worm_states_300_220428-152601.json"))/1000
+        self.standard_input_signal = data_factory.ghost_in_mesh_data_factory_standard(len(self.config["input_neuron"]), self.config["tstop"], self.config["neuron_sim_dt"], os.path.join(os.path.dirname(__file__),"data", "state", "worm_states_300_220428-152601.json"))/1000
         interact.add_food(food_location)
         assert len(start_location) == len(orientation) and len(start_location) == len(target_location)
-        interact.set_fog_color(np.array([87 / 255.0, 154.0 / 255.0, 137.0 / 255.0, 1.0], dtype=np.float32))
-        interact.set_floor_color(np.array([44 / 255.0, 91 / 255.0, 80 / 255.0, 1.0], dtype=np.float32))
-        interact.set_fog_params(1, np.array([0.06,4,8], dtype=np.float32))
+        #interact.set_fog_color(np.array([87 / 255.0, 154.0 / 255.0, 137.0 / 255.0, 1.0], dtype=np.float32))
+        #interact.set_floor_color(np.array([44 / 255.0, 91 / 255.0, 80 / 255.0, 1.0], dtype=np.float32))
+        #interact.set_fog_params(1, np.array([0.06,4,8], dtype=np.float32))
 
         # add worms
         self.worms = []
@@ -235,7 +233,7 @@ class WormInEnv(object):
 
     def step(self):
         """move one step according to the stimulus in the environment"""
-        print("step", self.step_count)
+        # print("step", self.step_count)
         self.step_count += 1
         self.muscle_signal_list = self.control_muscle()
         for i in range(self.worm_num):

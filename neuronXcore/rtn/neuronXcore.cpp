@@ -129,8 +129,10 @@ namespace rtn
 			<< "\t span: " << model_span << std::endl
 			<< std::endl;
 
-
-		vec3f camera_pos = sceneBounds.center() + vec3f(-1.f, .0f, +1.f) * model_span;
+		float model_length;
+		model_span.x > model_span.y ? model_length = model_span.x : model_length = model_span.y;
+		model_length > model_span.z ? model_length = model_length : model_length = model_span.z;
+		vec3f camera_pos = sceneBounds.center() + vec3f(-0.75f * model_length, 0.0f, 0.f);
 		vec3f camera_target = sceneBounds.center();
 		float camera_fov = 70.f;
 
@@ -284,7 +286,7 @@ namespace rtn
 		{
 			widget.setCameraOrientation(/*origin   */camera_pos,
 				/*lookat   */camera_target,
-				/*up-vector*/vec3f(0.f, 1.f, 0.f),
+				/*up-vector*/vec3f(0.f, 0.f, 1.f),
 				/*fovy(deg)*/camera_fov);
 		}
 		
