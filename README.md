@@ -48,8 +48,8 @@ build and install boost to path you want
 ```
 tar -xzf boost_1_79_0.tar.gz
 cd boost_1_79_0
-./bootstrap --with-python=python3
-./b2 --with-python --with-filesystem --with-system --prefix="PATH_YOU_WANT" install
+./bootstrap.sh --with-python=python3
+./b2 --with-python --with-filesystem --with-system --prefix="YOUR_BOOST_PATH" install
 ```
 ### Build
 ```
