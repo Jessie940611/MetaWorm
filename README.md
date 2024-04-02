@@ -85,7 +85,7 @@ cd MetaWorm/build
 ```
 It you get "No module named xxx", try
 ```
-export PYTHONPATH~=~/MetaWorm/
+export PYTHONPATH=~/MetaWorm/
 ```
 
 ## Instructions for Use
