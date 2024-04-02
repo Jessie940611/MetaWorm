@@ -60,22 +60,32 @@ cmake ../neuronXcore -G"Unix Makefiles" -DCUDA_TOOLKIT_ROOT_DIR="path to cuda ro
 make -j8
 ```
 ### Python
-install Python packages
+#### change build path in `worm_in_env.py`
+```
+cd MetaWorm/eworm/ghost_in_mesh_sim/
+# change line 3 in worm_in_env.py to add the `build` dir in your PC
+sys.path.append('[directory of build]')
+```
+#### install Python packages
 ```
 pip install -r requirements.txt
 ```
-### create an NMODL mechanism library
+#### create an NMODL mechanism library
 ```
 cd MetaWorm/eworm/components/mechanism
 nrnivmodl modfile
 ```
-
+If you get "Command 'nrnivmodl' not found", find it in `/home/[username]/.local/bin`
 ## Demo
-Experience the simulation of C. elegans movement with our demo.   
+Experience the simulation of *C. elegans* movement with our demo.   
 Execute the open-loop simulation of *C. elegans* movement.
 ```
 cd MetaWorm/build
 ./neuronXcore -data ../eworm/ghost_in_mesh_sim/data/tuned/video_offline/video_offline_neuronX
+```
+It you get "No module named xxx", try
+```
+export PYTHONPATH~=~/MetaWorm/
 ```
 
 ## Instructions for Use

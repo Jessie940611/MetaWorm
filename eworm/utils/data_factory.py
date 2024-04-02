@@ -191,7 +191,7 @@ def c302_data_factory(num, tstop, dt, pause_prob, initial_pause, noise_amp, smoo
 
 
 def interpolate_data_factory(num, tstop, dt, window_duration, gap_duration, feature_probs, volt_ranges,
-                             noise_settings, uniform=False, reverse=0,seed=None):
+                             noise_settings, uniform=False, reverse=0, seed=None):
     """
     Generating simulation traces through interpolating on uniform sampled mark point.
     resting phase.
@@ -383,14 +383,45 @@ if __name__ == "__main__":
             'noise_amp': 80,
             'smooth_sigma': 60}}
     default_interpolate_data_factory_config = {
-        "factory_name": "interpolate_data_factory",
-        "args": {
-            "window_duration": 40000,
-            "gap_duration": 10000,
-            "feature_probs": {"stage_phase_prob": 0.5, "plateau_phase_prob": 0.5, "hyper_polarization_prob": 0.5},
-            "volt_ranges": {"resting_range": (-70, -70), "peak_range": (-70, -70), "hyper_range": (-70, -70),
-                            "stage_range": (-70, -70)},
-            "noise_settings": ((10, 200), (0, 0))}}
+    "factory_name": "interpolate_data_factory",
+    "args": {
+      "window_duration": 400,
+      "gap_duration": 100,
+      "feature_probs": {
+        "stage_phase_prob": 0.5,
+        "plateau_phase_prob": 0.5,
+        "hyper_polarization_prob": 0.5
+      },
+      "volt_ranges": {
+        "resting_range": [
+          -70,
+          -70
+        ],
+        "peak_range": [
+          20,
+          40
+        ],
+        "hyper_range": [
+          -70,
+          -70
+        ],
+        "stage_range": [
+          20,
+          40
+        ]
+      },
+      "noise_settings": [
+        [
+          200,
+          10
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    }
+  }
     default_random_data_factory_config = {
         "factory_name": "random_data_factory",
         "args": {
@@ -403,14 +434,14 @@ if __name__ == "__main__":
         "args": {
             "volt_range": (-75, 40)}}
     default_ghost_in_mesh_data_factory_config = {
-        "factory_name": "ghost_in_mesh_data_factory",
+        "factory_name": "ghost_in_mesh_data_factory_standard",
         "args": {
             "loc_path": path.join(path.dirname(__file__), '..',
                                   "ghost_in_mesh_sim", "data", "state",
                                   "worm_states_300_220428-152601.json")
         }}
-    data_config = default_cell2015_pc1_data_factory_config
-    sim_config = {"dt": 0.5, "tstop": 10000}
+    data_config = default_interpolate_data_factory_config
+    sim_config = {"dt": 5/3, "tstop": 10000}
     task_name = "sample"
     sample_num = 4
     sample_traces = eval(data_config['factory_name'])(

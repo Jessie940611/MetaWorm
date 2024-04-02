@@ -103,24 +103,30 @@ def neural_model_output_current(config, plot=True):
     loc_path = config["loc_path"]
     input_cell_name = config["input_cell_name"]
     output_cell_name = config["output_cell_name"]
+    dt_scale = config["muscle_sim_config"]["dt"] / config["sim_config"]["dt"]
 
     group_path = os.path.join("output", group_name)
     os.makedirs(group_path, exist_ok=True)
-    config = func.load_json(config_path)["config"]
+    circuit_config = func.load_json(config_path)["config"]
     abs_circuit = pickle.load(open(abs_circuit_path, 'rb'))
     copyfile(config_path, os.path.join(group_path, f"{group_name}_config.json"))
     copyfile(abs_circuit_path, os.path.join(group_path, f"{group_name}_abscircuit.pkl"))
-    circuit = transform.abstract2detailed(abs_circuit, config, load_hoc=True, rec_voltage=True)
-    
+    circuit = transform.abstract2detailed(abs_circuit, circuit_config, load_hoc=True, rec_voltage=True)
+
     # make input connections
-    input_traces = data_factory.ghost_in_mesh_data_factory(len(input_cell_name), tstop=sim_config['tstop'], dt=sim_config['dt'], loc_path=loc_path)/1000
+    # offline input
+    # input_traces = data_factory.ghost_in_mesh_data_factory_standard(len(input_cell_name), tstop=sim_config['tstop'], dt=sim_config['dt'], loc_path=loc_path)/1000
+    # online input: collected from GhostInMesh (step_init & save input)
+    # input_traces = np.tile(np.repeat(np.array([float(x) for x in open("/home/zhaomengdi/Project/model_meta_worm/eworm/ghost_in_mesh_sim/data/state/input.txt", "r").read().split("\n")]), dt_scale), (len(input_cell_name),1))
+    # offline online input
+    input_traces = np.tile(np.repeat(np.array([float(x) for x in list(filter(None, open(os.path.join("forfigure_input.txt"), "r").read().split("\n")))])[:300], dt_scale), (len(input_cell_name),1))
     add_iclamp(circuit, input_cell_name)
 
     if plot:
         plt.figure(figsize=(12,3), dpi=200)
         for v, cn in zip(input_traces, input_cell_name):
-            plt.plot(np.arange(0, 10000, 5/3)/1000, v, label=cn)
-        plt.xticks(np.arange(0, 10, 0.9))
+            plt.plot(np.arange(0, config["muscle_sim_config"]["tstop"] , config["sim_config"]["dt"])/1000, v, label=cn)
+        plt.xticks(np.arange(0, config["muscle_sim_config"]["tstop"]/1000, 1))
         plt.legend(ncol=2)
         plt.xlabel("Time (s)")
         plt.ylabel("Voltage (mV)")
@@ -161,6 +167,7 @@ def train_neuron_muscle_map(config):
     group_name = config["group_name"]
     muscle_path = config["muscle_path"]
     muscle_sim_config = config["muscle_sim_config"]
+    dt_scale = config["muscle_sim_config"]["dt"] / config["sim_config"]["dt"]
 
     group_path = os.path.join("output", group_name)
     if not os.path.exists(group_path):
@@ -168,7 +175,7 @@ def train_neuron_muscle_map(config):
     # load motor neuron voltage
     neural_voltage_path = os.path.join(group_path, f"{group_name}_model_output_soma.pkl")
     neuron_voltage = np.array(pickle.load(open(neural_voltage_path, "rb"))) # (80, 6000)
-    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, 20)), axis=2)
+    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, dt_scale)), axis=2)
     # load target muscle signal
     muscle_signal = np.transpose(np.array(func.load_json(muscle_path)["Frames"]))
     # figure
@@ -183,8 +190,8 @@ def train_neuron_muscle_map(config):
 
     muscle_signal = muscle_signal * 100 - 80
     # training neural voltage to muscle signal mapping
-    neuron_voltage = neuron_voltage[:,20:]
-    muscle_signal = muscle_signal[:,20:]
+    neuron_voltage = neuron_voltage[:,dt_scale:]
+    muscle_signal = muscle_signal[:,dt_scale:]
     EPOCH = 501
     LR = 0.01
     cnn = CNN()
@@ -255,13 +262,14 @@ def train_neuron_muscle_detail_map(config):
     group_name = config["group_name"]
     muscle_path = config["muscle_path"]
     muscle_sim_config = config["muscle_sim_config"]
+    dt_scale = config["muscle_sim_config"]["dt"] / config["sim_config"]["dt"]
 
     group_path = os.path.join("output", group_name)
     assert os.path.exists(group_path)
     # load motor neuron voltage
     neural_voltage_path = os.path.join(group_path, f"{group_name}_model_output_soma.pkl")
     neuron_voltage = np.array(pickle.load(open(neural_voltage_path, "rb")))
-    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, 20)), axis=2)
+    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, dt_scale)), axis=2)
     # load target muscle signal
     muscle_signal = np.transpose(np.array(func.load_json(muscle_path)["Frames"]))
     # figure
@@ -331,14 +339,15 @@ def train_neuron_muscle_reservoir(config, plot=True):
     group_name = config["group_name"]
     muscle_path = config["muscle_path"]
     muscle_sim_config = config["muscle_sim_config"]
+    dt_scale = int(config["muscle_sim_config"]["dt"] / config["sim_config"]["dt"])
 
     group_path = os.path.join("output", group_name)
     if not os.path.exists(group_path):
         os.makedirs(group_path)
     # load motor neuron voltage
     neural_voltage_path = os.path.join(group_path, f"{group_name}_model_output_soma.pkl")
-    neuron_voltage = np.array(pickle.load(open(neural_voltage_path, "rb"))) # (80,6000)
-    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, 20)), axis=2) # (80,300)
+    neuron_voltage = np.array(pickle.load(open(neural_voltage_path, "rb"))) # (80,18000)
+    neuron_voltage = np.mean(neuron_voltage.reshape((80, 300, dt_scale)), axis=2) # (80,300)
     # load target muscle signal
     muscle_signal = np.transpose(np.array(func.load_json(muscle_path)["Frames"])) # (96,300)
     # figure
@@ -347,8 +356,8 @@ def train_neuron_muscle_reservoir(config, plot=True):
         import seaborn
         output_neuron_name = config["output_cell_name"]
         time_trace = []
-        for t in np.arange(0, 10000, 1000/30):
-            if np.mod(t,900) < 0.01:
+        for t in np.arange(0, config["muscle_sim_config"]["tstop"], config["muscle_sim_config"]["dt"]):
+            if np.mod(t,1000) < 0.01:
                 time_trace.append(f'{t/1000:.1f}')
             else:
                 time_trace.append('')
@@ -360,8 +369,8 @@ def train_neuron_muscle_reservoir(config, plot=True):
         plt.savefig(os.path.join(group_path, f"{group_name}_neural_voltage_heatmap.png"))
         plt.figure(figsize=(12,6), dpi=200)
         for v, cn in zip(neuron_voltage, output_neuron_name):
-            plt.plot(np.arange(0, 10000, 1000/30)/1000, v, label=cn)
-        plt.xticks(np.arange(0, 10, 0.9))
+            plt.plot(np.arange(0, config["muscle_sim_config"]["tstop"], config["muscle_sim_config"]["dt"])/1000, v, label=cn)
+        plt.xticks(np.arange(0, config["muscle_sim_config"]["tstop"]/1000, 1))
         plt.legend(ncol=5)
         plt.xlabel("Time (s)")
         plt.ylabel("Voltage (mV)")
@@ -377,36 +386,45 @@ def train_neuron_muscle_reservoir(config, plot=True):
         plt.savefig(os.path.join(group_path, f"{group_name}_target_muscle_heatmap.png"))
         plt.figure(figsize=(12,4), dpi=200)
         for v, cn in zip(muscle_signal * 100 - 80, muscle_name):
-            plt.plot(np.arange(0, 10000, 1000/30)/1000, v, label=cn)
-        plt.xticks(np.arange(0, 10, 0.9))
+            plt.plot(np.arange(0, config["muscle_sim_config"]["tstop"], config["muscle_sim_config"]["dt"])/1000, v, label=cn)
+        plt.xticks(np.arange(0, config["muscle_sim_config"]["tstop"]/1000, 1))
         # plt.legend(ncol=5)
         plt.ylim(-90, 10)
         plt.xlabel("Time (s)")
         plt.ylabel("Voltage (mV)")
         plt.savefig(os.path.join(group_path, f"{group_name}_target_muscle_voltage.png"))
 
-
+    # forward moving: muscle_signal * 100 - 80
+    # reverse moving: muscle_signal[::-1,:] * 100 - 80
     muscle_signal = muscle_signal * 100 - 80
     # training readout map (neural voltage to muscle signal)
     # https://github.com/stevenabreu7/handson_reservoir/blob/main/handson_tutorial.ipynb
     alpha = 1e-3
-    T_washout = 20
+    T_washout = 40
     x_train = neuron_voltage[:,T_washout:].T # (300,80)
     y_train = muscle_signal[:,T_washout:].T #(300,96)
     state_corr = x_train.T @ x_train
     cross_corr = x_train.T @ y_train
-    w_out = np.linalg.inv((state_corr + alpha * np.eye(x_train.shape[1]))) @ cross_corr
+    w_out = np.linalg.inv((state_corr + alpha * np.eye(x_train.shape[1]))) @ cross_corr  # (80, 96)
+    pickle.dump(w_out, open(os.path.join(group_path, f"{group_name}_wout.pkl"), "wb"))
     print(f"w_out shape: {w_out.shape}")
 
     # prediction
-    prediction = (neuron_voltage.T @ w_out).T
+    prediction = ((neuron_voltage.T @ w_out).T + 80) / 100
     print(f"prediction shape: {prediction.shape}")
 
     # figure
     if plot:
-        plt.figure(dpi=200)
-        seaborn.heatmap(w_out, cmap = 'jet')
+        plt.figure(figsize=(17,13), dpi=200)
+        seaborn.heatmap(w_out, xticklabels=muscle_name, yticklabels=config["output_cell_name"], cmap = 'jet', vmin=-60, vmax=60)
+        plt.tight_layout()
+        plt.savefig(os.path.join(group_path, f"{group_name}_rsv_wout_scale.png"))
+
+        plt.figure(figsize=(17,13), dpi=200)
+        seaborn.heatmap(w_out, xticklabels=muscle_name, yticklabels=config["output_cell_name"], cmap = 'jet')
+        plt.tight_layout()
         plt.savefig(os.path.join(group_path, f"{group_name}_rsv_wout.png"))
+        
         plt.figure(figsize=(8,16), dpi=200)
         seaborn.heatmap(prediction, xticklabels=time_trace, cmap='jet', vmin=-70, vmax=-20)
         plt.yticks([*range(len(muscle_name))], muscle_name, rotation ='horizontal')
@@ -415,23 +433,27 @@ def train_neuron_muscle_reservoir(config, plot=True):
         plt.savefig(os.path.join(group_path, f"{group_name}_rsv_prediction_heatmap.png"))
         plt.figure(figsize=(12,4), dpi=200)
         for v, cn in zip(prediction, muscle_name):
-            plt.plot(np.arange(0, 10000, 1000/30)/1000, v, label=cn)
-        plt.xticks(np.arange(0, 10, 0.9))
+            plt.plot(np.arange(0, config["muscle_sim_config"]["tstop"], config["muscle_sim_config"]["dt"])/1000, v, label=cn)
+        plt.xticks(np.arange(0, config["muscle_sim_config"]["tstop"]/1000, 1))
         # plt.xlim(0.8,10.3)
-        plt.ylim(-90, 10)
+        # plt.ylim(-90, 10)
+        plt.ylim(0, 0.8)
         # plt.legend(ncol=5)
         plt.xlabel("Time (s)")
         plt.ylabel("Voltage (mV)")
         plt.savefig(os.path.join(group_path, f"{group_name}_rsv_prediction_voltage.png"))
+        plt.close("all")
 
-    prediction = np.squeeze(np.transpose(prediction))
+    prediction = (np.squeeze(np.transpose(prediction)) + 80)/100
     # save prediction (seq: DR0-24, VR0-24, DL0-24, VL0-24)
-    with open(os.path.join(group_path, f"{group_name:s}_eworm.muscle-220428-152601.txt"), "w") as file:
-        for i in range(prediction.shape[0]):
-            for _ in range(8):
-                for j in range(prediction.shape[1]):
-                    if j == 0:
-                        file.write(f"{prediction[i][j]:.10f}")
-                    else:
-                        file.write(f"{ prediction[i][j]:.10f}")
-                file.write("\n")
+    np.save(os.path.join(group_path, f"{group_name:s}_eworm.muscle-220428-152601.npy"), prediction[24:,:])
+
+    target_muscle_signal = np.array(func.load_json(muscle_path)["Frames"])
+    # target_muscle_signal = np.append(target_muscle_signal1, target_muscle_signal1[:,::-1], axis=0)
+    # target_muscle_signal = np.append(target_muscle_signal, target_muscle_signal1[:,::-1], axis=0)
+    # print(target_muscle_signal.shape)
+    # plt.figure(figsize=(16,5))
+    # for v in target_muscle_signal.T:
+    #     plt.plot(v)
+    # plt.savefig(os.path.join(group_path, "test.png"))
+    np.save(os.path.join(group_path, "gt_eworm.muscle-220428-152601.npy"), target_muscle_signal)

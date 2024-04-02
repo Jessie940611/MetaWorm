@@ -176,7 +176,15 @@ def export_for_neuronXcore(circuit, save_path, group_name='group1'):
             if not conn.pre_segment or not conn.post_segment:
                 continue
             pre_id = id_dict[(conn.pre_cell.index, conn.pre_segment.point2.index)]
-            post_id = id_dict[(conn.post_cell.index, conn.post_segment.point2.index)]
+            # we calculate mid location of segments when constructing connections
+            # we use point location of segments when visualizing connections
+            dist_mid = np.linalg.norm(conn.pre_segment.location - conn.post_segment.location)
+            dist_1 = abs(np.linalg.norm(conn.pre_segment.point2.location - conn.post_segment.point1.location)-dist_mid)
+            dist_2 = abs(np.linalg.norm(conn.pre_segment.point2.location - conn.post_segment.point2.location)-dist_mid)
+            if dist_1 < dist_2:
+                post_id = id_dict[(conn.post_cell.index, conn.post_segment.point1.index)]
+            else:
+                post_id = id_dict[(conn.post_cell.index, conn.post_segment.point2.index)]
             # cate: gj-0, exc_syn-1, inh_syn-2
             cate = cate_dic[conn.category] if conn.weight > 0 else cate_dic[conn.category]+1
             snp_file.write(f"{pre_id:d} {post_id:d} {cate:d} 1\n")

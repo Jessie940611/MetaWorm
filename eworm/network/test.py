@@ -22,7 +22,7 @@ if __name__ == "__main__":
         os.makedirs(abs_circuit_path, exist_ok=True)
         circuit = transform.config2detailed(config, input_cells, rec_voltage=True, cluster_connection=True, seed=0)
         abscircuit = transform.detailed2abstract(circuit)
-        sys.setrecursionlimit(10000)
+        sys.setrecursionlimit(100000)
         pickle.dump(abscircuit, open(abs_circuit_file, 'wb'))
     print(type(circuit))
     print(len(circuit.cells))

@@ -11,7 +11,7 @@ import time
 
 if __name__ == "__main__":
     np.random.seed(42)
-    group_name = "reservoir"
+    group_name = "video_offline"
     config_dir = path.join(path.dirname(__file__), "output", group_name, f"{group_name}_config.json")
     abs_circuit_file = path.join(path.dirname(__file__), "output", group_name, f"{group_name}_abscircuit.pkl")
     
