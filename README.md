@@ -1,7 +1,11 @@
 # MetaWorm
 
-Welcome to MetaWorm, an **integrative data-driven model of *C. elegans***, linking brain, body and environment to faithfully replicate *C. elegans* locomotion behavior.    
+Welcome to MetaWorm, an **integrative data-driven model of *C. elegans***, linking brain, body and environment to faithfully replicate *C. elegans* locomotion behavior.   
 For a comprehensive introduction to MetaWorm, please refer to our paper available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.02.22.581686v2).
+<div align="center">
+  <img src="https://github.com/Jessie940611/MetaWorm/tree/main/img/MetaWorm_overview.png">
+</div>
+
 
 ### Components:
 **eworm:** The neural network model  
@@ -59,6 +63,7 @@ cd build
 cmake ../neuronXcore -G"Unix Makefiles" -DCUDA_TOOLKIT_ROOT_DIR="path to cuda root" -DOptiX_INCLUDE="path to optix library/include" -DBoost_DIR="path to BoostConfig.cmake"
 make -j8
 ```
+The folder `build2` is a reference for your `build` folder.
 ### Python
 #### change build path in `worm_in_env.py`
 ```
@@ -87,6 +92,10 @@ It you get "No module named xxx", try
 ```
 export PYTHONPATH=~/MetaWorm/
 ```
+Press *space* to play or pause the simulation.
+<div align="center">
+  <img src="https://github.com/Jessie940611/MetaWorm/tree/main/img/GUI.png">
+</div>
 
 ## Instructions for Use
 ### Modify the Neural Network Model of MetaWorm
