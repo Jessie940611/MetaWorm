@@ -3,7 +3,7 @@
 Welcome to MetaWorm, an **integrative data-driven model of *C. elegans***, linking brain, body and environment to faithfully replicate *C. elegans* locomotion behavior.   
 For a comprehensive introduction to MetaWorm, please refer to our paper available at [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.02.22.581686v2).
 <div align="center">
-  <img src="https://github.com/Jessie940611/MetaWorm/tree/main/img/MetaWorm_overview.png">
+  <img src="https://github.com/Jessie940611/MetaWorm/blob/main/img/MetaWorm_overview.png">
 </div>
 
 
@@ -94,7 +94,7 @@ export PYTHONPATH=~/MetaWorm/
 ```
 Press *space* to play or pause the simulation.
 <div align="center">
-  <img src="https://github.com/Jessie940611/MetaWorm/tree/main/img/GUI.png">
+  <img src="https://github.com/Jessie940611/MetaWorm/blob/main/img/GUI.png">
 </div>
 
 ## Instructions for Use
