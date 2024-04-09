@@ -177,9 +177,9 @@ space : Play & Pause.
 'x': coordinate of world. x-red arrow. y-green arrow. z-blue arrow.   
 'c': coordinate of worm body & head. x-red arrow. y-green arrow. z-blue arrow.   
 'q': exit   
-'v': switch main view to neuron and vice versa
-'1': take a screenshot
-'2': hide or show subwiew
+'v': switch main view to neuron and vice versa    
+'1': take a screenshot    
+'2': hide or show subwiew   
 
 ### program start parameter
 ```
