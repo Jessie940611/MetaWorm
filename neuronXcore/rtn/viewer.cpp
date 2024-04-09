@@ -77,11 +77,11 @@ namespace rtn
 
 		screenshot_id += 1;
 
-		if (screenshot_id > 1800)
-		{
-			std::cout << "too many screenshots taken(>1800), stop taking more, exiting" << std::endl;
-			exit(0);
-		}
+		// if (screenshot_id > 1800)
+		// {
+		// 	std::cout << "too many screenshots taken(>1800), stop taking more, exiting" << std::endl;
+		// 	exit(0);
+		// }
 
 		//std::vector<uint32_t> pixels;
 		// for (int y = 0; y < fbSize.y; y++)
@@ -870,33 +870,33 @@ namespace rtn
 			ImGui::Begin("settings", 0, /*ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize*/ ImGuiWindowFlags_AlwaysAutoResize);
 			if (ImGui::CollapsingHeader("Camera property"))
 			{
-				if (ImGui::Checkbox("move camera", &moveCameraFlag)) {}
-				ImGui::SameLine();
-				if (ImGui::Checkbox("roll camera", &rollCameraFlag)) {}
-				ImGui::SameLine();
-				if (ImGui::Checkbox("record camera", &bRecordCamera)) { recordCameraTrack(); }
+				// if (ImGui::Checkbox("move camera", &moveCameraFlag)) {}
+				// ImGui::SameLine();
+				// if (ImGui::Checkbox("roll camera", &rollCameraFlag)) {}
+				// ImGui::SameLine();
+				// if (ImGui::Checkbox("record camera", &bRecordCamera)) { recordCameraTrack(); }
 
-				if (ImGui::Checkbox("clear camera track", &bClearCameraTrack))
-				{
-					if (bClearCameraTrack == true)
-					{
-						camera_track.clear();
-						bClearCameraTrack = false;
-					}
-				}
+				// if (ImGui::Checkbox("clear camera track", &bClearCameraTrack))
+				// {
+				// 	if (bClearCameraTrack == true)
+				// 	{
+				// 		camera_track.clear();
+				// 		bClearCameraTrack = false;
+				// 	}
+				// }
 
 
-				if (ImGui::Checkbox("test camera", &bTestCamera))
-				{
-					if (bTestCamera == true)
-					{
-						bUpdateVoltage = false;
-						moveCameraFlag = false;
-						rollCameraFlag = false;
-						bUpdateVoltageAndCamera = false;
-					}
-				}
-				ImGui::SameLine();
+				// if (ImGui::Checkbox("test camera", &bTestCamera))
+				// {
+				// 	if (bTestCamera == true)
+				// 	{
+				// 		bUpdateVoltage = false;
+				// 		moveCameraFlag = false;
+				// 		rollCameraFlag = false;
+				// 		bUpdateVoltageAndCamera = false;
+				// 	}
+				// }
+				// ImGui::SameLine();
 				static bool bResetCamera = false;
 				if (ImGui::Checkbox("reset camera", &bResetCamera))
 				{
@@ -920,9 +920,9 @@ namespace rtn
 
 				if (ImGui::SliderInt("spp", &frameState.samplesPerPixel, 1, 128)) { frameState.accumID = 0; }
 
-				if (ImGui::SliderInt("shader mode", (&frameState.shadeMode), 0, 2)) { frameState.accumID = 0; }
+				// if (ImGui::SliderInt("shader mode", (&frameState.shadeMode), 0, 2)) { frameState.accumID = 0; }
 
-				if (ImGui::SliderInt("max accum", &frameState.maxAccum, -1, 140)) { frameState.accumID = 0; }
+				// if (ImGui::SliderInt("max accum", &frameState.maxAccum, -1, 140)) { frameState.accumID = 0; }
 
 			}
 
@@ -969,9 +969,9 @@ namespace rtn
 			{
 				if (rtn->haveVoltages && ImGui::CollapsingHeader("Voltage Property"))
 				{
-					if (ImGui::Checkbox("voltage animation", &bUpdateVoltage)) {}
-					ImGui::SameLine();
-					if (ImGui::Checkbox("derivative mode", &frameState.enable_voltage_deriv)) { frameState.accumID = 0; }
+					// if (ImGui::Checkbox("voltage animation", &bUpdateVoltage)) {}
+					// ImGui::SameLine();
+					// if (ImGui::Checkbox("derivative mode", &frameState.enable_voltage_deriv)) { frameState.accumID = 0; }
 
 					/*if (ImGui::Checkbox("animate voltage & camera", &bUpdateVoltageAndCamera))
 					{
@@ -995,59 +995,59 @@ namespace rtn
 						}
 					}*/
 
-					static std::vector<float> voltages(rtn->voltages.size(), 0.0f);
-					static std::vector<float> derivatives(rtn->voltages.size(), 0.0f);
+					// static std::vector<float> voltages(rtn->voltages.size(), 0.0f);
+					// static std::vector<float> derivatives(rtn->voltages.size(), 0.0f);
 
-					if (ImGui::SliderInt("voltage sequence", &voltage_index, 0, rtn->maxTime - 1))
-					{
-						auto id = voltage_index;
-						auto previd = id - 1;
-						previd = previd < 0 ? 0 : previd;
+					// if (ImGui::SliderInt("voltage sequence", &voltage_index, 0, rtn->maxTime - 1))
+					// {
+					// 	auto id = voltage_index;
+					// 	auto previd = id - 1;
+					// 	previd = previd < 0 ? 0 : previd;
 
-						float currentVoltage, previousVoltage;
+					// 	float currentVoltage, previousVoltage;
 
-						for (int i = 0; i < rtn->voltages.size(); i++)
-						{
-							if (!rtn->haveVoltage[i] || (id < rtn->voltageStart[i] || id >= rtn->voltageEnd[i]))
-							{
-								currentVoltage = frameState.resting;
-							}
-							else
-							{
-								currentVoltage = rtn->voltages[i][id];
-							}
+					// 	for (int i = 0; i < rtn->voltages.size(); i++)
+					// 	{
+					// 		if (!rtn->haveVoltage[i] || (id < rtn->voltageStart[i] || id >= rtn->voltageEnd[i]))
+					// 		{
+					// 			currentVoltage = frameState.resting;
+					// 		}
+					// 		else
+					// 		{
+					// 			currentVoltage = rtn->voltages[i][id];
+					// 		}
 								
-							if (!rtn->haveVoltage[previd] || (previd < rtn->voltageStart[i] || previd >= rtn->voltageEnd[i]))
-							{
-								previousVoltage = frameState.resting;
-							}
-							else
-							{
-								previousVoltage = rtn->voltages[i][previd];
-							}
+					// 		if (!rtn->haveVoltage[previd] || (previd < rtn->voltageStart[i] || previd >= rtn->voltageEnd[i]))
+					// 		{
+					// 			previousVoltage = frameState.resting;
+					// 		}
+					// 		else
+					// 		{
+					// 			previousVoltage = rtn->voltages[i][previd];
+					// 		}
 
-							voltages[i] = currentVoltage;
-							derivatives[i] = currentVoltage - previousVoltage;
-						}	
+					// 		voltages[i] = currentVoltage;
+					// 		derivatives[i] = currentVoltage - previousVoltage;
+					// 	}	
 
-						renderer.updatevoltagesColor(voltages.data());
-						renderer.updatevoltagesDeriv(derivatives.data());
-						print_vector(voltages);
-						print_vector(derivatives);
+					// 	renderer.updatevoltagesColor(voltages.data());
+					// 	renderer.updatevoltagesDeriv(derivatives.data());
+					// 	print_vector(voltages);
+					// 	print_vector(derivatives);
 
-						if (frameState.maxAccum <= 0)
-						{
-							frameState.accumID = 0;
-						}
-					}
+					// 	if (frameState.maxAccum <= 0)
+					// 	{
+					// 		frameState.accumID = 0;
+					// 	}
+					// }
 
-					if (ImGui::SliderInt("sequence step", &frameState.step, 0, 40)) { frameState.accumID = 0; }
+					// if (ImGui::SliderInt("sequence step", &frameState.step, 0, 40)) { frameState.accumID = 0; }
 
-					if (ImGui::SliderFloat("voltage threshold", &frameState.voltage_threshold, 0.001f, 0.999f)) { frameState.accumID = 0; }
+					// if (ImGui::SliderFloat("voltage threshold", &frameState.voltage_threshold, 0.001f, 0.999f)) { frameState.accumID = 0; }
 
-					if (ImGui::SliderInt("animation accum frame", (&anim_accum), 1, 140)) {}
+					// if (ImGui::SliderInt("animation accum frame", (&anim_accum), 1, 140)) {}
 
-					ImGui::Separator();
+					// ImGui::Separator();
 
 					if (ImGui::Checkbox("enable emissive", &frameState.enable_emissive)) { frameState.accumID = 0; }
 
@@ -1578,52 +1578,52 @@ namespace rtn
 			static float fov = cmdline_args.camera.fov;
 			static int cameraMode = cmdline_args.camera.mode;
 			switch (key) {
-			case 'n':
-			case 'N':
-				cameraMode--;
-				if (cameraMode < 0)
-				{
-					cameraMode = 3;
-					this->enableFreeMode();
-					this->camera.forceUp = false;
-				}
-				if (cameraMode == 0)
-				{
-					this->enableFlyMode();
-				}
-				if (cameraMode == 1)
-				{
-					this->enableInspectMode(sceneBounds, 1e-3f, 1e6f);
-					this->camera.forceUp = true;
-				}
-				if (cameraMode == 2)
-				{
-					this->enableFPSMode();
-				}
-				break;
-			case 'm':
-			case 'M':
-				cameraMode++;
-				if (cameraMode > 3)
-				{
-					cameraMode = 0;
-					this->enableFlyMode();
-					this->camera.forceUp = true;
-				}
-				if (cameraMode == 1)
-				{
-					this->enableInspectMode(sceneBounds, 1e-3f, 1e6f);
-				}
-				if (cameraMode == 2)
-				{
-					this->enableFPSMode();
-					this->camera.forceUp = false;
-				}
-				if (cameraMode == 3)
-				{
-					this->enableFreeMode();
-				}
-				break;
+			// case 'n':
+			// case 'N':
+			// 	cameraMode--;
+			// 	if (cameraMode < 0)
+			// 	{
+			// 		cameraMode = 3;
+			// 		this->enableFreeMode();
+			// 		this->camera.forceUp = false;
+			// 	}
+			// 	if (cameraMode == 0)
+			// 	{
+			// 		this->enableFlyMode();
+			// 	}
+			// 	if (cameraMode == 1)
+			// 	{
+			// 		this->enableInspectMode(sceneBounds, 1e-3f, 1e6f);
+			// 		this->camera.forceUp = true;
+			// 	}
+			// 	if (cameraMode == 2)
+			// 	{
+			// 		this->enableFPSMode();
+			// 	}
+			// 	break;
+			// case 'm':
+			// case 'M':
+			// 	cameraMode++;
+			// 	if (cameraMode > 3)
+			// 	{
+			// 		cameraMode = 0;
+			// 		this->enableFlyMode();
+			// 		this->camera.forceUp = true;
+			// 	}
+			// 	if (cameraMode == 1)
+			// 	{
+			// 		this->enableInspectMode(sceneBounds, 1e-3f, 1e6f);
+			// 	}
+			// 	if (cameraMode == 2)
+			// 	{
+			// 		this->enableFPSMode();
+			// 		this->camera.forceUp = false;
+			// 	}
+			// 	if (cameraMode == 3)
+			// 	{
+			// 		this->enableFreeMode();
+			// 	}
+			// 	break;
 			case '[':
 			case '{':
 				fov--;
