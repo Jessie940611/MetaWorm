@@ -155,12 +155,17 @@ Set parameters in `worm_in_env.py`, like `group_name` and parameters in `config`
 If you want to do perturbation experiment, replace the corresponding function in line 58 of `worm_neural_network.py`.
 Run the simulation of *C. elegans* movement.
 ```
-./neuronXcore -data [directory of your morphological data]
+./neuronXcore -data [directory of your neuron morphology data]
 ```
 ### 3D User Interface Interaction
 #### Mouse
-Rotatation with mouse right key   
-Zoom with mouse middle key
+##### in main view of worm body
+rotate with right button   
+zoom with middle button
+##### in main view of neuron
+rotate with left button   
+strafe with middle button   
+zoom with right button    
 #### Keyboard
 space : Play & Pause.   
 'r': reset worm.   
@@ -172,6 +177,19 @@ space : Play & Pause.
 'x': coordinate of world. x-red arrow. y-green arrow. z-blue arrow.   
 'c': coordinate of worm body & head. x-red arrow. y-green arrow. z-blue arrow.   
 'q': exit   
+'v': switch main view to neuron and vice versa
+'1': take a screenshot
+'2': hide or show subwiew
+
+### program start parameter
+```
+usage: neuronXcore -param PARAM   
+-data DIR                           DIR is the folder of neuron mophology data, must contain a .swc file
+-ss DIR                             DIR is the folder you want screenshots to save at, default: ./screenshots
+--worm-auto-screenshot              automatically taking screenshots when playing
+-win W H                            adjust start window size by W * H (int)
+-spp SPP                            adjust samples per pixels in neuron rendering (int)
+```
 
 ## License
 This project is covered under the Apache 2.0 License.   
