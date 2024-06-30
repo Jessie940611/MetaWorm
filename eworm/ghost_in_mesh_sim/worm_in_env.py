@@ -46,13 +46,13 @@ class WormInEnv(object):
                 normalize_rgb(np.array([255,249,206,102], dtype=np.float32)),
                 normalize_rgb(np.array([185,208,184,102], dtype=np.float32)),
             ]
-        group_name = "video_offline"
+        group_name = "response-0-Powell-tolx"
         if config is None:
             config = {
                 "config_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_config.json"),
                 "abs_circuit_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_abscircuit.pkl"),
                 "cnn_model_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_cnn_model.pt"),
-                # "init_muscle_file": os.path.join(os.path.dirname(__file__), "output", "test", "gt_eworm.muscle-220428-152601.txt"),
+                # "init_muscle_file": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"gt_eworm.muscle-220428-152601.npy"),
                 "init_muscle_file": os.path.join(os.path.dirname(__file__), "output", "test.npy"),
                 "input_neuron": ["AWAL","AWAR","AWCL","AWCR","ASKL","ASKR","ALNL","ALNR","PLML","PHAL","PHAR","URYDL","URYDR","URYVL","URYVR"],
                 "output_neuron": ["RIML", "RIMR", "RMEL", "RMER", "RMED", "RMEV", "RMDDL", "RMDDR", "RMDL", "RMDR", "RMDVL", "RMDVR", "RIVL", "RIVR", "SMDDL", "SMDDR", "SMDVL", "SMDVR", "SMBDL", "SMBDR", "SMBVL", "SMBVR", "DA01", "DA02", "DA03", "DA04", "DA05", "DA06", "DA07", "DA08", "DA09", "DB01", "DB02", "DB03", "DB04", "DB05", "DB06", "DB07", "DD01", "DD02", "DD03", "DD04", "DD05", "DD06", "VA01", "VA02", "VA03", "VA04", "VA05", "VA06", "VA07", "VA08", "VA09", "VA10", "VA11", "VA12", "VB01", "VB02", "VB03", "VB04", "VB05", "VB06", "VB07", "VB08", "VB09", "VB10", "VB11", "VD01", "VD02", "VD03", "VD04", "VD05", "VD06", "VD07", "VD08", "VD09", "VD10", "VD11", "VD12", "VD13"],
@@ -62,12 +62,15 @@ class WormInEnv(object):
                 "v_init": -65,
                 "secondorder": 0,
                 "proprioception": False, # default False
-                "detail_control": "fc",  # "one_cnn", "multi_cnn", "fc"
+                "detail_control": "matrix",  # "one_cnn", "multi_cnn", "fc", "matrix"
                 "neuron_muscle_matrix": os.path.join(os.path.dirname(__file__), "..", "components", "param", "connection", "neuron_muscle.xlsx"),
                 "reservoir_wout": os.path.join(os.path.dirname(__file__), "data", "tuned", group_name, f"{group_name}_wout.pkl"),
-                "interaction_mode": "offline",
-                "export_data": False  # default False
+                "interaction_mode": "online",
+                "export_data": True,  # default False
+                "perturbation": 'control', # control, remove_neurite, shuffle_location, shuffle_weight_syn, shuffle_weight_gj, remove_syn, remove_gj
+                "seed": 7 # [0, 23, 53, 64, 77, 7, 15, 36, 88, 91]
             }
+        np.random.seed(config['seed'])
         if food_location is None:
             food_location = np.array([1.8275,-0.0276,-0.3082], dtype=np.float32)  #np.array([0, 0, 0], dtype=np.float32) # global
         if start_location is None:
@@ -134,6 +137,10 @@ class WormInEnv(object):
         self.rel_vx = np.array([], dtype=np.float64)
         self.rel_vy = np.array([], dtype=np.float64)
         self.rel_vz = np.array([], dtype=np.float64)
+        self.global_x =  np.array([], dtype=np.float64)
+        self.global_y =  np.array([], dtype=np.float64)
+        self.global_z =  np.array([], dtype=np.float64)
+        self.center = np.array([], dtype=np.float64)
 
     def control_muscle(self):
         """get head location, calculate motor neuron voltage and tranfer it to muscle signal"""
@@ -233,7 +240,7 @@ class WormInEnv(object):
 
     def step(self):
         """move one step according to the stimulus in the environment"""
-        # print("step", self.step_count)
+        print("step", self.step_count)
         self.step_count += 1
         self.muscle_signal_list = self.control_muscle()
         for i in range(self.worm_num):
@@ -242,9 +249,16 @@ class WormInEnv(object):
             interact.set_muscle_signals(np.array(self.muscle_signal_list[i], dtype=np.float32), i)
             interact.set_neuron_voltages(eval(f"self.nv_{i:d}"))
             relative_loc_vel = np.asarray(interact.get_tracking_location(i))
+            global_loc_pos = np.asarray(interact.get_global_tracking_location(i))
+            center_loc_pos = np.asarray(interact.get_center_tracking_location(i))
 
         relative_loc = np.reshape(relative_loc_vel[:51], (17, 3)).transpose()
         relative_vel = np.reshape(relative_loc_vel[51:], (17, 3)).transpose()
+        global_loc = np.reshape(global_loc_pos, (17, 3)).transpose()
+
+        # print(global_loc_pos)
+        # print(global_loc)
+
         if self.step_count == 1:
             self.rel_x = np.expand_dims(relative_loc[0], axis=0)
             self.rel_y = np.expand_dims(relative_loc[1], axis=0)
@@ -252,6 +266,11 @@ class WormInEnv(object):
             self.rel_vx = np.expand_dims(relative_vel[0], axis=0)
             self.rel_vy = np.expand_dims(relative_vel[1], axis=0)
             self.rel_vz = np.expand_dims(relative_vel[2], axis=0)
+            self.global_x = np.expand_dims(global_loc[0], axis=0)
+            self.global_y = np.expand_dims(global_loc[1], axis=0)
+            self.global_z = np.expand_dims(global_loc[2], axis=0)
+            self.center = np.expand_dims(center_loc_pos, axis=1)
+
         else:
             self.rel_x  = np.append(self.rel_x,  np.expand_dims(relative_loc[0], axis=0), axis=0)
             self.rel_y  = np.append(self.rel_y,  np.expand_dims(relative_loc[1], axis=0), axis=0)
@@ -259,7 +278,15 @@ class WormInEnv(object):
             self.rel_vx = np.append(self.rel_vx, np.expand_dims(relative_vel[0], axis=0), axis=0)
             self.rel_vy = np.append(self.rel_vy, np.expand_dims(relative_vel[1], axis=0), axis=0)
             self.rel_vz = np.append(self.rel_vz, np.expand_dims(relative_vel[2], axis=0), axis=0)
+            self.global_x = np.append(self.global_x, np.expand_dims(global_loc[0], axis=0), axis=0)
+            self.global_y = np.append(self.global_y, np.expand_dims(global_loc[1], axis=0), axis=0)
+            self.global_z = np.append(self.global_z, np.expand_dims(global_loc[2], axis=0), axis=0)
+            self.center = np.append(self.center, np.expand_dims(center_loc_pos, axis=1), axis=1)
 
+        # print(self.global_x)
+        # print(self.center[0])
+        # print([x[0] for x in self.test_world_head_loc])
+        
         # # test relative location
         # _, ax_pos = plt.subplots(3,1,figsize=(13,7))
         # yRange = 0.5
@@ -306,9 +333,12 @@ class WormInEnv(object):
                 "neural_voltage": self.test_n,
                 "muscle_activation": self.test_m,
                 "behavior_value": [self.rel_x, self.rel_y, self.rel_z, self.rel_vx, self.rel_vy, self.rel_vz],
+                "global_positions": [self.global_x, self.global_y, self.global_z],
+                "center_positions": self.center,
                 "local_head_location": self.test_local_head_loc,
                 "world_head_location": self.test_world_head_loc
-            },open("remove_syn.pkl", "wb"))
+            },open(f"{self.config['perturbation']:s}_{self.config['seed']:d}.pkl", "wb"))
+            exit()
 
 
         for i in range(self.worm_num):
@@ -357,7 +387,7 @@ class WormInEnv(object):
                 for wormnn, mss in zip(self.worms, self.muscle_signal_list):
                     for (_, muscle_index, conn) in wormnn.worm.proprioceptive_connections:
                         conn.hoc_obj.vpre = mss[muscle_index] * 80
-        elif self.config.get("detail_control", "fc") == "fc":
+        elif self.config.get("detail_control", "fc") in ["fc", "matrix"]:
             for wormnn, dcn in zip(self.worms, delta_concentration_normalized_list):
                 for i,_ in enumerate(self.config["input_neuron"]):
                     wormnn.worm.iclamp[i].amp = dcn

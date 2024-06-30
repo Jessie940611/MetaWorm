@@ -137,6 +137,50 @@ namespace Interact
         return toNumPyArray(data_joined);
     }
 
+    np::ndarray GetGlobalTrajectories(int wormId)
+    {
+        if (g_sim == nullptr)
+        {
+            p::tuple shape = p::make_tuple(3);
+            np::dtype dtype = np::dtype::get_builtin<float>();
+            np::ndarray ret = np::empty(shape, dtype);
+
+            std::cout << "Environtment not init!" << std::endl;
+            return ret;
+        }
+
+        const Eigen::VectorXd& x = g_sim->GetmWorms()[wormId]->GetSoftWorld()->GetPositions();
+        const std::vector<int>& sampling_indices = g_sim->GetmWorms()[wormId]->GetCreature()->GetSamplingIndex();
+        Eigen::VectorXd global_sampling_pos(3*sampling_indices.size());
+
+        for(int i=0; i<sampling_indices.size(); i++) 
+        {
+            Eigen::Vector3d sample_position = x.block<3, 1>(3 * sampling_indices[i], 0);
+            Eigen::Vector3d sample_pos = g_sim->WormLocalToWorld(wormId, sample_position);
+            global_sampling_pos.block<3,1>(3*i, 0) = sample_pos;
+        }
+
+        return toNumPyArray(global_sampling_pos);
+    }
+
+    np::ndarray GetCenterPointGlobalTrajectory(int wormId)
+    {
+        if (g_sim == nullptr)
+        {
+            p::tuple shape = p::make_tuple(3);
+            np::dtype dtype = np::dtype::get_builtin<float>();
+            np::ndarray ret = np::empty(shape, dtype);
+
+            std::cout << "Environtment not init!" << std::endl;
+            return ret;
+        }
+
+        const Eigen::VectorXd& x = g_sim->GetmWorms()[wormId]->GetSoftWorld()->GetPositions();
+        Eigen::Vector3d center_position = x.block<3, 1>(3 * g_sim->GetmWorms()[wormId]->GetCreature()->GetCenterIndex(), 0);
+        Eigen::Vector3d center_pos = g_sim->WormLocalToWorld(wormId, center_position);
+        return toNumPyArray(center_pos); 
+    }
+
     np::ndarray GetInitPositionWorld(int wormId)
     {
         if (g_sim == nullptr)
@@ -347,6 +391,8 @@ BOOST_PYTHON_MODULE(interact)
     def("set_muscle_signals", &Interact::SetActivationLevels);
     def("get_head_location", &Interact::GetHeadLocation);
     def("get_tracking_location", &Interact::GetTrackingPoint);
+    def("get_global_tracking_location", &Interact::GetGlobalTrajectories);
+    def("get_center_tracking_location", &Interact::GetCenterPointGlobalTrajectory);
     def("set_neuron_voltages", &Interact::SetTubesVoltages);
     def("set_neuron_voltages_and_screen_shot", &Interact::SetTubesVoltagesAndScreenShot);
     def("add_worm", &Interact::AddWorm);
