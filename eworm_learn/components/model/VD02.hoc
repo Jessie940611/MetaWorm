@@ -1,0 +1,186 @@
+begintemplate VD02
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Neurite2, id: Neurite2, parent: Axon
+create Neurite2
+public Neurite2
+// Section: Neurite3, id: Neurite3, parent: Neurite2
+create Neurite3
+public Neurite3
+// Section: Neurite4, id: Neurite4, parent: Neurite2
+create Neurite4
+public Neurite4
+// Section: Neurite5, id: Neurite5, parent: Axon
+create Neurite5
+public Neurite5
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Neurite2, Neurite3, Neurite4, Neurite5]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite3, Neurite3, Neurite3, Neurite4, Neurite4, Neurite4, Neurite5, Neurite5, Neurite5]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Neurite2(0), Axon(1.0)
+    connect Neurite3(0), Neurite2(1.0)
+    connect Neurite4(0), Neurite2(1.0)
+    connect Neurite5(0), Axon(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -0.65000004, -226.04999, 2.35, 3.254228 ) }
+    Soma { pt3dadd( -0.65000004, -222.795762, 2.35, 3.254228 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -0.65000004, -226.04999, 2.35, 0.53851646 ) }
+    Axon { pt3dadd( -0.70000005, -226.0, 2.35, 0.53851646 ) }
+    Axon { pt3dadd( -0.70000005, -229.3, 4.75, 0.53851646 ) }
+    Axon { pt3dadd( -1.4499999, -237.15, 10.25, 0.4358899 ) }
+    // Section: Neurite2, id: Neurite2, parent: Axon (entry count 6/100)
+    Neurite2 { pt3dclear() }
+    Neurite2 { pt3dadd( -1.4499999, -237.15, 10.25, 0.4358899 ) }
+    Neurite2 { pt3dadd( -1.3000001, -237.27501, 10.35, 0.3640055 ) }
+    Neurite2 { pt3dadd( -1.1, -237.25, 10.325, 0.33541018 ) }
+    Neurite2 { pt3dadd( 1.4000001, -237.25, 10.225, 0.33541018 ) }
+    Neurite2 { pt3dadd( 7.3250003, -237.15, 10.625, 0.61237246 ) }
+    Neurite2 { pt3dadd( 14.900001, -235.57501, 14.775001, 0.49497476 ) }
+    Neurite2 { pt3dadd( 18.775, -233.04999, 21.4, 0.5937171 ) }
+    Neurite2 { pt3dadd( 20.4, -230.425, 28.3, 0.60207975 ) }
+    Neurite2 { pt3dadd( 18.775, -227.85, 35.2, 0.5937171 ) }
+    Neurite2 { pt3dadd( 14.900001, -225.3, 41.775, 0.5678908 ) }
+    Neurite2 { pt3dadd( 7.3250003, -223.75, 45.899998, 0.8902247 ) }
+    Neurite2 { pt3dadd( 1.6, -223.55, 46.274998, 0.33541018 ) }
+    Neurite2 { pt3dadd( -0.3, -223.525, 45.625, 0.38078865 ) }
+    Neurite2 { pt3dadd( -0.5, -223.525, 45.6, 0.4924429 ) }
+    // Section: Neurite3, id: Neurite3, parent: Neurite2 (entry count 20/100)
+    Neurite3 { pt3dclear() }
+    Neurite3 { pt3dadd( -0.5, -223.525, 45.6, 0.4924429 ) }
+    Neurite3 { pt3dadd( -0.70000005, -223.75, 45.699997, 0.5744563 ) }
+    Neurite3 { pt3dadd( -0.70000005, -228.55, 47.7, 0.5744563 ) }
+    Neurite3 { pt3dadd( -0.70000005, -229.6, 48.100002, 0.56568545 ) }
+    // Section: Neurite4, id: Neurite4, parent: Neurite2 (entry count 24/100)
+    Neurite4 { pt3dclear() }
+    Neurite4 { pt3dadd( -0.5, -223.525, 45.6, 0.4924429 ) }
+    Neurite4 { pt3dadd( -0.70000005, -223.3, 45.5, 0.56568545 ) }
+    Neurite4 { pt3dadd( -0.70000005, -208.15001, 39.3, 0.5744563 ) }
+    Neurite4 { pt3dadd( -0.70000005, -205.95, 37.7, 0.5744563 ) }
+    // Section: Neurite5, id: Neurite5, parent: Axon (entry count 28/100)
+    Neurite5 { pt3dclear() }
+    Neurite5 { pt3dadd( -1.4499999, -237.15, 10.25, 0.4358899 ) }
+    Neurite5 { pt3dadd( -1.4499999, -237.40001, 10.450001, 0.46904156 ) }
+    Neurite5 { pt3dadd( -1.4499999, -242.9, 14.25, 0.42426404 ) }
+    Neurite5 { pt3dadd( -1.4499999, -243.35, 14.55, 0.4358899 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Neurite2, Neurite3, Neurite4, Neurite5]}
+    dendrite_group = new SectionList()
+    Neurite2 dendrite_group.append()
+    Neurite3 dendrite_group.append()
+    Neurite4 dendrite_group.append()
+    Neurite5 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite2, Neurite3, Neurite3, Neurite3, Neurite4, Neurite4, Neurite4, Neurite5, Neurite5, Neurite5]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Neurite2 all.append()
+	Neurite3 all.append()
+	Neurite4 all.append()
+	Neurite5 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 4
+	Neurite2 nseg = 14
+	Neurite3 nseg = 4
+	Neurite4 nseg = 4
+	Neurite5 nseg = 4
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate VD02
+
+

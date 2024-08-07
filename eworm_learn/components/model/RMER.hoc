@@ -1,0 +1,132 @@
+begintemplate RMER
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -8.900001, -274.4, 46.987, 2.9698486 ) }
+    Soma { pt3dadd( -8.900001, -271.4301514, 46.987, 2.9698486 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -8.900001, -274.4, 46.987, 0.6422616 ) }
+    Axon { pt3dadd( -9.099999, -274.25, 45.975, 0.6422616 ) }
+    Axon { pt3dadd( -8.75, -273.775, 42.5, 0.4387482 ) }
+    Axon { pt3dadd( -7.1500006, -273.42502, 39.825, 0.44158804 ) }
+    Axon { pt3dadd( -4.875, -273.15, 38.125, 0.46368092 ) }
+    Axon { pt3dadd( -2.1, -273.05, 37.475, 0.39051247 ) }
+    Axon { pt3dadd( 0.6, -273.15, 38.125, 0.39051247 ) }
+    Axon { pt3dadd( 2.875, -273.42502, 39.825, 0.295804 ) }
+    Axon { pt3dadd( 4.425, -273.775, 42.449997, 0.44158804 ) }
+    Axon { pt3dadd( 4.95, -274.2, 45.5, 0.5 ) }
+    Axon { pt3dadd( 4.4, -274.65, 48.525, 0.4387482 ) }
+    Axon { pt3dadd( 2.8999999, -275.0, 51.1, 0.48989794 ) }
+    Axon { pt3dadd( 0.55, -275.3, 52.824997, 0.48218253 ) }
+    Axon { pt3dadd( -2.1, -275.35, 53.399998, 0.5 ) }
+    Axon { pt3dadd( -4.8500004, -275.3, 52.824997, 0.33541018 ) }
+    Axon { pt3dadd( -7.2, -274.97498, 51.050003, 0.5024938 ) }
+    Axon { pt3dadd( -8.7, -274.55002, 48.0, 0.5 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 17
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate RMER
+
+

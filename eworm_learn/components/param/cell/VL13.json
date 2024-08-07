@@ -1,0 +1,25 @@
+{   
+    "soma": {
+        "Ra": 300.0000000,
+        "cm": 1.0000000,
+        "gpas": 0.00001,
+        "epas": -50.000000,
+        "gbshl1": 0.0,
+        "gbshk1": 0.0,
+        "gbkvs1": 0.0,
+        "gbegl2": 0.0,
+        "gbegl36": 0.0,
+        "gbkqt3": 0.0,
+        "gbegl19": 0.0,
+        "gbunc2": 0.0,
+        "gbcca1": 0.0,
+        "gbslo1_egl19": 0.0,
+        "gbslo1_unc2": 0.0,
+        "gbslo2_egl19": 0.0,
+        "gbslo2_unc2": 0.0,
+        "gbkcnl": 0.0,
+        "gbnca": 0.0,
+        "gbirk": 0.0
+    }
+}
+

@@ -1,0 +1,150 @@
+begintemplate URYVL
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( 3.4, -280.92502, 45.35, 3.0430248 ) }
+    Soma { pt3dadd( 3.4, -277.8819952, 45.35, 3.0430248 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( 3.4, -280.92502, 45.35, 0.56568545 ) }
+    Axon { pt3dadd( 3.4, -282.0, 45.4, 0.56568545 ) }
+    Axon { pt3dadd( 3.6, -284.40002, 45.3, 0.56568545 ) }
+    Axon { pt3dadd( 4.05, -291.55, 45.2, 0.37416574 ) }
+    Axon { pt3dadd( 4.05, -291.8, 45.25, 0.42426404 ) }
+    Axon { pt3dadd( 5.1, -298.55002, 46.9, 0.3 ) }
+    Axon { pt3dadd( 5.05, -298.7, 46.95, 0.42426404 ) }
+    Axon { pt3dadd( 3.05, -304.85, 48.55, 0.4358899 ) }
+    Axon { pt3dadd( 3.05, -309.25, 50.050003, 0.4358899 ) }
+    Axon { pt3dadd( 3.05, -309.34998, 50.1, 0.37416574 ) }
+    Axon { pt3dadd( -0.05, -342.35, 55.800003, 0.37416574 ) }
+    Axon { pt3dadd( -0.05, -342.6, 55.85, 0.42426404 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 14/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( 3.4, -280.92502, 45.35, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 3.4, -279.85, 45.3, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 3.4, -278.3, 44.65, 0.53851646 ) }
+    Dendrite2 { pt3dadd( 3.4, -275.55002, 43.399998, 0.5744563 ) }
+    Dendrite2 { pt3dadd( 3.3, -274.44998, 43.1, 0.64031243 ) }
+    Dendrite2 { pt3dadd( 2.85, -274.1, 41.95, 0.5830952 ) }
+    Dendrite2 { pt3dadd( 2.3, -273.9, 40.975002, 0.63442886 ) }
+    Dendrite2 { pt3dadd( -0.1, -273.7, 39.5, 0.56568545 ) }
+    Dendrite2 { pt3dadd( -1.9, -273.30002, 39.225, 0.63442886 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Dendrite2]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 12
+	Dendrite2 nseg = 9
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate URYVL
+
+

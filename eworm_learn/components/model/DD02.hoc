@@ -1,0 +1,203 @@
+begintemplate DD02
+
+public init, topol, basic_shape, subsets, geom, memb
+public x, y, z, position
+
+
+//  Some methods for referencing the cells
+
+public toString, netInfo, set_initial_v, set_initial_ion_properties, synlist
+
+
+// Section: Soma, id: Soma, parent: $s.parent
+create Soma
+public Soma
+// Section: Axon, id: Axon, parent: Soma
+create Axon
+public Axon
+// Section: Dendrite2, id: Dendrite2, parent: Soma
+create Dendrite2
+public Dendrite2
+// Section: Neurite3, id: Neurite3, parent: Axon
+create Neurite3
+public Neurite3
+// Section: Neurite4, id: Neurite4, parent: Neurite3
+create Neurite4
+public Neurite4
+// Section: Neurite5, id: Neurite5, parent: Neurite3
+create Neurite5
+public Neurite5
+// Section: Neurite6, id: Neurite6, parent: Axon
+create Neurite6
+public Neurite6
+
+// Group: {name=soma_group, groups=[], sections=[Soma]}
+objref soma_group
+// Group: {name=axon_group, groups=[], sections=[Axon]}
+objref axon_group
+// Group: {name=dendrite_group, groups=[], sections=[Dendrite2, Neurite3, Neurite4, Neurite5, Neurite6]}
+objref dendrite_group
+// Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite4, Neurite4, Neurite4, Neurite4, Neurite4, Neurite5, Neurite5, Neurite5, Neurite6, Neurite6, Neurite6]}
+objref all
+
+objref synlist
+
+proc init() {
+    topol()
+    geom_nseg()
+    subsets()
+    subsets_inhomogeneous()
+    biophys()
+    biophys_inhomogeneous()
+    synlist = new List()
+    x = y = z = 0
+
+}
+
+
+
+
+
+proc topol() {
+    basic_shape()
+    connect Axon(0), Soma(1.0)
+    connect Dendrite2(0), Soma(1.0)
+    connect Neurite3(0), Axon(1.0)
+    connect Neurite4(0), Neurite3(1.0)
+    connect Neurite5(0), Neurite3(1.0)
+    connect Neurite6(0), Axon(1.0)
+
+}
+
+
+proc basic_shape() {
+
+    // Section: Soma, id: Soma, parent: $s.parent (entry count 0/100)
+    Soma { pt3dclear() }
+    Soma { pt3dadd( -1.85, -156.47499, -42.85, 4.1400485 ) }
+    Soma { pt3dadd( -1.85, -152.33494149999999, -42.85, 4.1400485 ) }
+    // Section: Axon, id: Axon, parent: Soma (entry count 2/100)
+    Axon { pt3dclear() }
+    Axon { pt3dadd( -1.85, -156.47499, -42.85, 0.73484695 ) }
+    Axon { pt3dadd( -1.85, -157.79999, -42.25, 0.73484695 ) }
+    Axon { pt3dadd( -1.5, -162.7, -40.149998, 0.53851646 ) }
+    Axon { pt3dadd( -1.4499999, -167.6, -37.6, 0.5 ) }
+    Axon { pt3dadd( -1.4499999, -186.7, -24.449999, 0.46904156 ) }
+    // Section: Dendrite2, id: Dendrite2, parent: Soma (entry count 7/100)
+    Dendrite2 { pt3dclear() }
+    Dendrite2 { pt3dadd( -1.85, -156.47499, -42.85, 1.0344081 ) }
+    Dendrite2 { pt3dadd( -1.85, -155.15, -43.45, 1.0344081 ) }
+    Dendrite2 { pt3dadd( -1.9, -151.3, -45.6, 0.8717798 ) }
+    Dendrite2 { pt3dadd( -1.5, -132.35, -55.05, 0.50990194 ) }
+    Dendrite2 { pt3dadd( -1.4499999, -131.2, -55.549995, 0.42426404 ) }
+    // Section: Neurite3, id: Neurite3, parent: Axon (entry count 12/100)
+    Neurite3 { pt3dclear() }
+    Neurite3 { pt3dadd( -1.4499999, -186.7, -24.449999, 0.46904156 ) }
+    Neurite3 { pt3dadd( -1.6, -186.9, -24.349998, 0.53851646 ) }
+    Neurite3 { pt3dadd( -1.9, -186.9, -24.375, 0.4924429 ) }
+    Neurite3 { pt3dadd( -4.8, -186.9, -24.4, 0.56568545 ) }
+    Neurite3 { pt3dadd( -11.325, -186.7, -24.025002, 0.552268 ) }
+    Neurite3 { pt3dadd( -19.575, -184.3, -19.824999, 0.73824114 ) }
+    Neurite3 { pt3dadd( -23.800001, -180.45, -13.175, 0.62649816 ) }
+    Neurite3 { pt3dadd( -25.625, -176.375, -6.2, 0.65192026 ) }
+    Neurite3 { pt3dadd( -23.800001, -172.35, 0.775, 0.6103278 ) }
+    Neurite3 { pt3dadd( -19.575, -168.5, 7.4249997, 0.73824114 ) }
+    Neurite3 { pt3dadd( -11.325, -166.075, 11.65, 0.61237246 ) }
+    Neurite3 { pt3dadd( -4.8, -165.90001, 12.0, 0.56568545 ) }
+    Neurite3 { pt3dadd( -1.1, -166.075, 11.85, 0.559017 ) }
+    Neurite3 { pt3dadd( -0.9, -166.1, 11.825, 0.585235 ) }
+    // Section: Neurite4, id: Neurite4, parent: Neurite3 (entry count 26/100)
+    Neurite4 { pt3dclear() }
+    Neurite4 { pt3dadd( -0.9, -166.1, 11.825, 0.585235 ) }
+    Neurite4 { pt3dadd( -0.70000005, -165.90001, 11.7, 0.6 ) }
+    Neurite4 { pt3dadd( -0.70000005, -162.75, 9.700001, 0.5744563 ) }
+    Neurite4 { pt3dadd( -0.70000005, -130.35, -8.4, 0.5744563 ) }
+    Neurite4 { pt3dadd( -0.70000005, -117.850006, -13.500001, 0.5744563 ) }
+    Neurite4 { pt3dadd( -0.70000005, -115.7, -14.0, 0.56568545 ) }
+    // Section: Neurite5, id: Neurite5, parent: Neurite3 (entry count 32/100)
+    Neurite5 { pt3dclear() }
+    Neurite5 { pt3dadd( -0.9, -166.1, 11.825, 0.585235 ) }
+    Neurite5 { pt3dadd( -0.70000005, -166.3, 11.95, 0.53851646 ) }
+    Neurite5 { pt3dadd( -0.70000005, -178.55, 19.9, 0.5744563 ) }
+    Neurite5 { pt3dadd( -0.70000005, -180.35, 20.900002, 0.5744563 ) }
+    // Section: Neurite6, id: Neurite6, parent: Axon (entry count 36/100)
+    Neurite6 { pt3dclear() }
+    Neurite6 { pt3dadd( -1.4499999, -186.7, -24.449999, 0.46904156 ) }
+    Neurite6 { pt3dadd( -1.4499999, -187.1, -24.25, 0.46904156 ) }
+    Neurite6 { pt3dadd( -1.4499999, -199.15001, -15.700001, 0.50990194 ) }
+    Neurite6 { pt3dadd( -1.4499999, -200.6, -14.5, 0.41231057 ) }
+
+}
+
+
+proc subsets() { local i
+
+    // Group: {name=soma_group, groups=[], sections=[Soma]}
+    soma_group = new SectionList()
+    Soma soma_group.append()
+
+    // Group: {name=axon_group, groups=[], sections=[Axon]}
+    axon_group = new SectionList()
+    Axon axon_group.append()
+
+    // Group: {name=dendrite_group, groups=[], sections=[Dendrite2, Neurite3, Neurite4, Neurite5, Neurite6]}
+    dendrite_group = new SectionList()
+    Dendrite2 dendrite_group.append()
+    Neurite3 dendrite_group.append()
+    Neurite4 dendrite_group.append()
+    Neurite5 dendrite_group.append()
+    Neurite6 dendrite_group.append()
+
+    // Group: {name=all, sections=[Soma, Axon, Axon, Axon, Axon, Dendrite2, Dendrite2, Dendrite2, Dendrite2, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite3, Neurite4, Neurite4, Neurite4, Neurite4, Neurite4, Neurite5, Neurite5, Neurite5, Neurite6, Neurite6, Neurite6]}
+	all = new SectionList()
+	Soma all.append()
+	Axon all.append()
+	Dendrite2 all.append()
+	Neurite3 all.append()
+	Neurite4 all.append()
+	Neurite5 all.append()
+	Neurite6 all.append()
+}
+
+
+proc subsets_inhomogeneous() {
+}
+
+proc biophys() {
+
+}
+
+func H() { // Heaviside function
+    if ($1>=0) return 1
+    if ($1==0) return 0.5
+    return 0
+}
+
+proc biophys_inhomogeneous() {
+}
+
+proc geom_nseg() {
+    // All sections not mentioned here have nseg = 1
+	Soma nseg = 2
+	Axon nseg = 5
+	Dendrite2 nseg = 5
+	Neurite3 nseg = 14
+	Neurite4 nseg = 6
+	Neurite5 nseg = 4
+	Neurite6 nseg = 4
+}
+
+
+proc position() { local i
+    forsec all {
+        for i = 0, n3d()-1 {
+            pt3dchange(i, $1+x3d(i), $2+y3d(i), $3+z3d(i), diam3d(i))
+        }
+    }
+    x = $1  y = $2  z = $3
+}
+
+
+endtemplate DD02
+
+
