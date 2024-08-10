@@ -115,6 +115,7 @@ Run the script to generate a neural network model
 ```
 python test.py
 ```
+If the parameters of single neuron models are unknown, you can used this [tool](https://github.com/holmosaint/dastNeuro/tree/BiophysicsInference) from this [article](https://www.biorxiv.org/content/10.1101/2022.10.03.510694v2.abstract) to tune the parameters.
 #### Fitting the neural network data
 The `eworm_learn` file contains code to training the neural network model to fit the target data. The target data can be Preason Correlation Matrix of neurons' membrane potentials, or the Calcium signals of neurons. This training algorithm requires GPUs to run and supports multiple GPUs.   
    
